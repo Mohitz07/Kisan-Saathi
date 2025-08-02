@@ -1,0 +1,191 @@
+<!-- src/main/resources/static/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kisan-Sathi - Dashboard</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+<!-- Header Navigation -->
+<header class="header">
+    <div class="header-container">
+        <div class="logo">
+            <i class="fas fa-seedling"></i>
+            <span class="logo-text">Kisan-Sathi</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="#dashboard" class="nav-item active">Dashboard</a>
+            <a href="#weather" class="nav-item">Weather</a>
+            <a href="#disease" class="nav-item">Disease Detection</a>
+            <a href="#soil" class="nav-item">Soil Monitor</a>
+            <a href="#market" class="nav-item">Market Prices</a>
+            <div class="dropdown">
+                <span class="nav-item dropdown-toggle">More <i class="fas fa-chevron-down"></i></span>
+                <div class="dropdown-menu">
+                    <a href="#advisory">Crop Advisory</a>
+                    <a href="#analytics">Analytics</a>
+                    <a href="#settings">Settings</a>
+                </div>
+            </div>
+        </nav>
+        <div class="header-right">
+            <div class="language-selector">
+                <i class="fas fa-globe"></i>
+                <span>EN</span>
+            </div>
+            <button class="login-btn">Login</button>
+        </div>
+    </div>
+</header>
+
+<!-- Main Hero Section -->
+<section class="hero-section">
+    <div class="hero-container">
+        <div class="hero-content">
+            <h1>Smart Farming with AI Assistance</h1>
+            <p>Kisan-Sathi empowers farmers with AI-driven insights for sustainable agriculture. Make data-informed decisions for better crop yields and farming practices.</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="scrollToFeatures()">
+                    <i class="fas fa-chart-line"></i>
+                    Analyze Your Crop
+                </button>
+                <button class="btn-secondary">
+                    <i class="fas fa-book"></i>
+                    Knowledge Hub
+                </button>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="image/farmer-with-mobile.jpeg" alt="Smart Farming" class="hero-img">
+        </div>
+    </div>
+</section>
+
+<!-- Features Grid Section -->
+<section class="features-section" id="features">
+    <div class="features-container">
+        <!-- Disease Detection Card -->
+        <div class="feature-card disease-card">
+            <div class="feature-icon">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <h3>Disease Detection</h3>
+            <p>Upload crop images for AI-powered disease identification and treatment recommendations.</p>
+            <div class="feature-actions">
+                <input type="file" id="diseaseImageInput" accept="image/*" style="display: none;">
+                <button onclick="document.getElementById('diseaseImageInput').click()" class="feature-btn">
+                    <i class="fas fa-camera"></i> Upload Image
+                </button>
+            </div>
+            <div id="diseaseResult" class="result-area"></div>
+        </div>
+
+        <!-- Weather Forecast Card -->
+        <div class="feature-card weather-card">
+            <div class="feature-icon">
+                <i class="fas fa-cloud-sun"></i>
+            </div>
+            <h3>Weather Forecast</h3>
+            <p>Get real-time weather updates and 7-day forecasts for informed farming decisions.</p>
+            <div class="feature-actions">
+                <input type="text" id="locationInput" placeholder="Enter location" class="location-input">
+                <button onclick="loadWeatherData()" class="feature-btn">
+                    <i class="fas fa-search"></i> Get Weather
+                </button>
+            </div>
+            <div id="weatherResult" class="result-area"></div>
+        </div>
+
+        <!-- Crop Advisory Card -->
+        <div class="feature-card advisory-card">
+            <div class="feature-icon">
+                <i class="fas fa-lightbulb"></i>
+            </div>
+            <h3>Crop Advisory</h3>
+            <p>Receive personalized crop recommendations based on soil conditions and weather data.</p>
+            <div class="feature-actions">
+                <select id="cropSelect" class="crop-select">
+                    <option value="">Select Crop Type</option>
+                    <option value="wheat">Wheat</option>
+                    <option value="rice">Rice</option>
+                    <option value="corn">Corn</option>
+                    <option value="tomato">Tomato</option>
+                </select>
+                <button onclick="getCropAdvice()" class="feature-btn">
+                    <i class="fas fa-search-plus"></i> Get Advice
+                </button>
+            </div>
+            <div id="advisoryResult" class="result-area"></div>
+        </div>
+
+        <!-- Market Prices Card -->
+        <div class="feature-card market-card">
+            <div class="feature-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>Market Prices</h3>
+            <p>Track current market prices for various crops and plan your selling strategy effectively.</p>
+            <div class="feature-actions">
+                <select id="marketCrop" class="crop-select">
+                    <option value="">Select Crop</option>
+                    <option value="wheat">Wheat</option>
+                    <option value="rice">Rice</option>
+                    <option value="onion">Onion</option>
+                    <option value="potato">Potato</option>
+                </select>
+                <button onclick="getMarketPrices()" class="feature-btn">
+                    <i class="fas fa-rupee-sign"></i> Check Prices
+                </button>
+            </div>
+            <div id="marketResult" class="result-area"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Soil Parameters Section -->
+<section class="soil-section" id="soil">
+    <div class="container">
+        <h2 class="section-title">Soil Parameter Monitoring</h2>
+        <div class="soil-dashboard">
+            <div class="sensor-controls">
+                <select id="sensorSelect" class="sensor-select">
+                    <option value="SOIL_001">Sensor 1 - Field A</option>
+                    <option value="SOIL_002">Sensor 2 - Field B</option>
+                    <option value="SOIL_003">Sensor 3 - Field C</option>
+                </select>
+                <button onclick="loadSoilData()" class="btn-primary">
+                    <i class="fas fa-sync"></i> Refresh Data
+                </button>
+            </div>
+            <div id="soilData" class="soil-parameters">
+                <div class="param-card">
+                    <h4>pH Level</h4>
+                    <div class="param-value">--</div>
+                    <div class="param-status">Loading...</div>
+                </div>
+                <div class="param-card">
+                    <h4>Moisture</h4>
+                    <div class="param-value">--</div>
+                    <div class="param-status">Loading...</div>
+                </div>
+                <div class="param-card">
+                    <h4>Temperature</h4>
+                    <div class="param-value">--</div>
+                    <div class="param-status">Loading...</div>
+                </div>
+                <div class="param-card">
+                    <h4>Nutrients</h4>
+                    <div class="param-value">--</div>
+                    <div class="param-status">Loading...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="/script.js"></script>
+</body>
+</html>
