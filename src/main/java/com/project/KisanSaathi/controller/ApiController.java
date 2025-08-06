@@ -7,7 +7,6 @@ import java.util.HashMap;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "*") // For frontend framework integration
 public class ApiController {
 
     @GetMapping("/weather")

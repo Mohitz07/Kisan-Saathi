@@ -196,7 +196,7 @@ async function getMarketPrices() {
         </div>
     `;
 }
-
+// Soil Parameter
 async function loadSoilData() {
     const sensorId = document.getElementById('sensorSelect').value;
 
