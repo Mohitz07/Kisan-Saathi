@@ -1,12 +1,14 @@
-<!-- src/main/resources/static/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Kisan-Sathi - Dashboard</title>
-    <link rel="stylesheet" href="/style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+
 </head>
 <body>
 <!-- Header Navigation -->
@@ -42,13 +44,13 @@
 </header>
 
 <!-- Main Hero Section -->
-<section class="hero-section">
+<section class="hero-section" id="dashboard">
     <div class="hero-container">
         <div class="hero-content">
             <h1>Smart Farming with AI Assistance</h1>
             <p>Kisan-Sathi empowers farmers with AI-driven insights for sustainable agriculture. Make data-informed decisions for better crop yields and farming practices.</p>
             <div class="hero-buttons">
-                <button class="btn-primary" onclick="scrollToFeatures()">
+                <button class="btn-primary" id="analyzeCropBtn">
                     <i class="fas fa-chart-line"></i>
                     Analyze Your Crop
                 </button>
@@ -59,7 +61,7 @@
             </div>
         </div>
         <div class="hero-image">
-            <img src="image/farmer-with-mobile.jpeg" alt="Smart Farming" class="hero-img">
+            <img src="image/farmer-with-mobile.jpeg" alt="Smart Farming" class="hero-img"/>
         </div>
     </div>
 </section>
@@ -68,15 +70,15 @@
 <section class="features-section" id="features">
     <div class="features-container">
         <!-- Disease Detection Card -->
-        <div class="feature-card disease-card">
+        <div class="feature-card disease-card" id="disease">
             <div class="feature-icon">
                 <i class="fas fa-leaf"></i>
             </div>
             <h3>Disease Detection</h3>
             <p>Upload crop images for AI-powered disease identification and treatment recommendations.</p>
             <div class="feature-actions">
-                <input type="file" id="diseaseImageInput" accept="image/*" style="display: none;">
-                <button onclick="document.getElementById('diseaseImageInput').click()" class="feature-btn">
+                <input type="file" id="diseaseImageInput" accept="image/*" style="display:none;"/>
+                <button class="feature-btn" id="diseaseUploadBtn">
                     <i class="fas fa-camera"></i> Upload Image
                 </button>
             </div>
@@ -84,15 +86,15 @@
         </div>
 
         <!-- Weather Forecast Card -->
-        <div class="feature-card weather-card">
+        <div class="feature-card weather-card" id="weather">
             <div class="feature-icon">
                 <i class="fas fa-cloud-sun"></i>
             </div>
             <h3>Weather Forecast</h3>
             <p>Get real-time weather updates and 7-day forecasts for informed farming decisions.</p>
             <div class="feature-actions">
-                <input type="text" id="locationInput" placeholder="Enter location" class="location-input">
-                <button onclick="loadWeatherData()" class="feature-btn">
+                <input type="text" id="locationInput" placeholder="Enter location" class="location-input"/>
+                <button class="feature-btn" id="weatherFetchBtn">
                     <i class="fas fa-search"></i> Get Weather
                 </button>
             </div>
@@ -100,7 +102,7 @@
         </div>
 
         <!-- Crop Advisory Card -->
-        <div class="feature-card advisory-card">
+        <div class="feature-card advisory-card" id="advisory">
             <div class="feature-icon">
                 <i class="fas fa-lightbulb"></i>
             </div>
@@ -114,7 +116,7 @@
                     <option value="corn">Corn</option>
                     <option value="tomato">Tomato</option>
                 </select>
-                <button onclick="getCropAdvice()" class="feature-btn">
+                <button class="feature-btn" id="advisoryBtn">
                     <i class="fas fa-search-plus"></i> Get Advice
                 </button>
             </div>
@@ -122,12 +124,12 @@
         </div>
 
         <!-- Market Prices Card -->
-        <div class="feature-card market-card">
+        <div class="feature-card market-card" id="market">
             <div class="feature-icon">
                 <i class="fas fa-chart-line"></i>
             </div>
             <h3>Market Prices</h3>
-            <p>Track current market prices for various crops and plan your selling strategy effectively.</p>
+            <p>Track current market prices for various crops and plan an effective selling strategy.</p>
             <div class="feature-actions">
                 <select id="marketCrop" class="crop-select">
                     <option value="">Select Crop</option>
@@ -136,7 +138,7 @@
                     <option value="onion">Onion</option>
                     <option value="potato">Potato</option>
                 </select>
-                <button onclick="getMarketPrices()" class="feature-btn">
+                <button class="feature-btn" id="marketBtn">
                     <i class="fas fa-rupee-sign"></i> Check Prices
                 </button>
             </div>
@@ -156,28 +158,23 @@
                     <option value="SOIL_002">Sensor 2 - Field B</option>
                     <option value="SOIL_003">Sensor 3 - Field C</option>
                 </select>
-                <button onclick="loadSoilData()" class="btn-primary">
+                <button class="btn-primary" id="soilRefreshBtn">
                     <i class="fas fa-sync"></i> Refresh Data
                 </button>
             </div>
             <div id="soilData" class="soil-parameters">
                 <div class="param-card">
-                    <h4>pH Level</h4>
+                    <h4>Nitrogen (N)</h4>
                     <div class="param-value">--</div>
                     <div class="param-status">Loading...</div>
                 </div>
                 <div class="param-card">
-                    <h4>Moisture</h4>
+                    <h4>Phosphorous (P)</h4>
                     <div class="param-value">--</div>
                     <div class="param-status">Loading...</div>
                 </div>
                 <div class="param-card">
-                    <h4>Temperature</h4>
-                    <div class="param-value">--</div>
-                    <div class="param-status">Loading...</div>
-                </div>
-                <div class="param-card">
-                    <h4>Nutrients</h4>
+                    <h4>Potassium (K)</h4>
                     <div class="param-value">--</div>
                     <div class="param-status">Loading...</div>
                 </div>
@@ -186,6 +183,7 @@
     </div>
 </section>
 
-<script src="/script.js"></script>
+<!-- Scripts: ES module entry -->
+<script type="module" src="/js/main.js"></script>
 </body>
 </html>
