@@ -1,8 +1,15 @@
+## Architecture
+![img_2.png](img_2.png)
+
 ## Home Page
 
-<img width="1919" height="867" alt="image" src="https://github.com/user-attachments/assets/0c2cab5c-0b5a-4875-851e-fb53e4b615c1" />
+![img_3.png](img_3.png)
 
-## Soil Parameters
+## Soil Parameters & Recommendations
 
-<img width="1919" height="863" alt="image" src="https://github.com/user-attachments/assets/22ac1790-5220-49bf-b7ab-9008c8283765" />
+![img_1.png](img_1.png)
 
+## Hardware & Components
+![img_4.png](img_4.png)
+![img_5.png](img_5.png)
+![img_6.png](img_6.png)
