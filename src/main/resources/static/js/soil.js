@@ -22,17 +22,14 @@ export function initSoil(db) {
         document.querySelector('.soil-dashboard').appendChild(adviceContainer);
       }
 
-      // Clear previous content
       adviceContainer.innerHTML = '';
 
-      // Create and style the advice box using CSS class
       const adviceBox = document.createElement('div');
       adviceBox.classList.add('advice-box');
       adviceBox.textContent = adviceText;
 
       adviceContainer.appendChild(adviceBox);
 
-      // Save advice text for voice assistance button
       adviceContainer.dataset.adviceText = adviceText;
 
     } catch (error) {
@@ -49,7 +46,6 @@ export function initSoil(db) {
   }
 
   // Voice assistance function to speak the advice text in Hindi
-  // Track current utterance and speaking state
   let speechUtterance = null;
   let isSpeaking = false;
 
@@ -79,8 +75,6 @@ export function initSoil(db) {
       alert('Speech synthesis not supported in this browser.');
     }
   }
-document.getElementById('voiceAssistBtn')?.addEventListener('click', speakAdvice);
-
 
   // Load soil data from Firebase and trigger advice fetching
   async function loadSoilData() {
@@ -133,5 +127,6 @@ document.getElementById('voiceAssistBtn')?.addEventListener('click', speakAdvice
   document.getElementById('soilRefreshBtn')?.addEventListener('click', loadSoilData);
   document.getElementById('voiceAssistBtn')?.addEventListener('click', speakAdvice);
 
+  // Initial load of soil data and advice
   loadSoilData();
 }
