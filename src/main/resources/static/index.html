@@ -161,6 +161,9 @@
                 <button class="btn-primary" id="soilRefreshBtn">
                     <i class="fas fa-sync"></i> Refresh Data
                 </button>
+                <button id="voiceAssistBtn" class="btn-primary">
+                    <i class="fas fa-volume-up"></i> Play
+                </button>
             </div>
             <div id="soilData" class="soil-parameters">
                 <div class="param-card">
@@ -179,8 +182,14 @@
                     <div class="param-status">Loading...</div>
                 </div>
             </div>
+
+            <div id="soilAdviceResult" class="advice-box">
+                <!-- Gemini advice will be displayed here -->
+                Your soil advice will appear here.
+            </div>
         </div>
     </div>
+
 </section>
 
 <!-- Scripts: ES module entry -->
