@@ -617,3 +617,20 @@ body {
   color: #625400;
   box-sizing: border-box;
 }
+
+/*Language*/
+.language-dropdown {
+    background: none;
+    border: none;
+    color: currentColor;
+    font-size: 1em;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+}
+
+.language-dropdown option {
+    background: white;
+    color: black;
+}
+

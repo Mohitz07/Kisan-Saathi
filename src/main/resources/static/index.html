@@ -8,7 +8,8 @@
     <!-- Styles -->
     <link rel="stylesheet" href="style.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
-
+    <!-- Google Fonts for Devanagari support -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet"/>
 </head>
 <body>
 <!-- Header Navigation -->
@@ -19,26 +20,21 @@
             <span class="logo-text">Kisan-Sathi</span>
         </div>
         <nav class="nav-menu">
-            <a href="#dashboard" class="nav-item active">Dashboard</a>
-            <a href="#weather" class="nav-item">Weather</a>
-            <a href="#disease" class="nav-item">Disease Detection</a>
-            <a href="#soil" class="nav-item">Soil Monitor</a>
-            <a href="#market" class="nav-item">Market Prices</a>
-            <div class="dropdown">
-                <span class="nav-item dropdown-toggle">More <i class="fas fa-chevron-down"></i></span>
-                <div class="dropdown-menu">
-                    <a href="#advisory">Crop Advisory</a>
-                    <a href="#analytics">Analytics</a>
-                    <a href="#settings">Settings</a>
-                </div>
-            </div>
+            <a href="#dashboard" class="nav-item active" data-i18n="header.dashboard">Dashboard</a>
+            <a href="#weather" class="nav-item" data-i18n="header.weather">Weather</a>
+            <a href="#disease" class="nav-item" data-i18n="header.disease">Disease Detection</a>
+            <a href="#soil" class="nav-item" data-i18n="header.soil">Soil Monitor</a>
+            <a href="#market" class="nav-item" data-i18n="header.market">Market Prices</a>
         </nav>
         <div class="header-right">
             <div class="language-selector">
                 <i class="fas fa-globe"></i>
-                <span>EN</span>
+                <select id="languageSelect" class="language-dropdown">
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी</option>
+                    <option value="mr">मराठी</option>
+                </select>
             </div>
-            <button class="login-btn">Login</button>
         </div>
     </div>
 </header>
@@ -47,16 +43,16 @@
 <section class="hero-section" id="dashboard">
     <div class="hero-container">
         <div class="hero-content">
-            <h1>Smart Farming with AI Assistance</h1>
-            <p>Kisan-Sathi empowers farmers with AI-driven insights for sustainable agriculture. Make data-informed decisions for better crop yields and farming practices.</p>
+            <h1 data-i18n="hero.title">Smart Farming with AI Assistance</h1>
+            <p data-i18n="hero.subtitle">Kisan-Sathi empowers farmers with AI-driven insights for sustainable agriculture. Make data-informed decisions for better crop yields and farming practices.</p>
             <div class="hero-buttons">
                 <button class="btn-primary" id="analyzeCropBtn">
                     <i class="fas fa-chart-line"></i>
-                    Analyze Your Crop
+                    <span class="btn-text" data-i18n="hero.analyze">Analyze Your Crop</span>
                 </button>
                 <button class="btn-secondary">
                     <i class="fas fa-book"></i>
-                    Knowledge Hub
+                    <span class="btn-text" data-i18n="hero.knowledge">Knowledge Hub</span>
                 </button>
             </div>
         </div>
@@ -74,12 +70,13 @@
             <div class="feature-icon">
                 <i class="fas fa-leaf"></i>
             </div>
-            <h3>Disease Detection</h3>
-            <p>Upload crop images for AI-powered disease identification and treatment recommendations.</p>
+            <h3 data-i18n="features.disease.title">Disease Detection</h3>
+            <p data-i18n="features.disease.desc">Upload crop images for AI-powered disease identification and treatment recommendations.</p>
             <div class="feature-actions">
                 <input type="file" id="diseaseImageInput" accept="image/*" style="display:none;"/>
                 <button class="feature-btn" id="diseaseUploadBtn">
-                    <i class="fas fa-camera"></i> Upload Image
+                    <i class="fas fa-camera"></i>
+                    <span class="btn-text" data-i18n="features.disease.upload">Upload Image</span>
                 </button>
             </div>
             <div id="diseaseResult" class="result-area"></div>
@@ -90,12 +87,13 @@
             <div class="feature-icon">
                 <i class="fas fa-cloud-sun"></i>
             </div>
-            <h3>Weather Forecast</h3>
-            <p>Get real-time weather updates and 7-day forecasts for informed farming decisions.</p>
+            <h3 data-i18n="features.weather.title">Weather Forecast</h3>
+            <p data-i18n="features.weather.desc">Get real-time weather updates and 7-day forecasts for informed farming decisions.</p>
             <div class="feature-actions">
-                <input type="text" id="locationInput" placeholder="Enter location" class="location-input"/>
+                <input type="text" id="locationInput" placeholder="Enter location" class="location-input" data-i18n-placeholder="features.weather.placeholder"/>
                 <button class="feature-btn" id="weatherFetchBtn">
-                    <i class="fas fa-search"></i> Get Weather
+                    <i class="fas fa-search"></i>
+                    <span class="btn-text" data-i18n="features.weather.get">Get Weather</span>
                 </button>
             </div>
             <div id="weatherResult" class="result-area"></div>
@@ -106,18 +104,19 @@
             <div class="feature-icon">
                 <i class="fas fa-lightbulb"></i>
             </div>
-            <h3>Crop Advisory</h3>
-            <p>Receive personalized crop recommendations based on soil conditions and weather data.</p>
+            <h3 data-i18n="features.advisory.title">Crop Advisory</h3>
+            <p data-i18n="features.advisory.desc">Receive personalized crop recommendations based on soil conditions and weather data.</p>
             <div class="feature-actions">
                 <select id="cropSelect" class="crop-select">
-                    <option value="">Select Crop Type</option>
+                    <option value="" data-i18n="features.advisory.select">Select Crop Type</option>
                     <option value="wheat">Wheat</option>
                     <option value="rice">Rice</option>
                     <option value="corn">Corn</option>
                     <option value="tomato">Tomato</option>
                 </select>
                 <button class="feature-btn" id="advisoryBtn">
-                    <i class="fas fa-search-plus"></i> Get Advice
+                    <i class="fas fa-search-plus"></i>
+                    <span class="btn-text" data-i18n="features.advisory.get">Get Advice</span>
                 </button>
             </div>
             <div id="advisoryResult" class="result-area"></div>
@@ -128,18 +127,19 @@
             <div class="feature-icon">
                 <i class="fas fa-chart-line"></i>
             </div>
-            <h3>Market Prices</h3>
-            <p>Track current market prices for various crops and plan an effective selling strategy.</p>
+            <h3 data-i18n="features.market.title">Market Prices</h3>
+            <p data-i18n="features.market.desc">Track current market prices for various crops and plan an effective selling strategy.</p>
             <div class="feature-actions">
                 <select id="marketCrop" class="crop-select">
-                    <option value="">Select Crop</option>
+                    <option value="" data-i18n="features.market.select">Select Crop</option>
                     <option value="wheat">Wheat</option>
                     <option value="rice">Rice</option>
                     <option value="onion">Onion</option>
                     <option value="potato">Potato</option>
                 </select>
                 <button class="feature-btn" id="marketBtn">
-                    <i class="fas fa-rupee-sign"></i> Check Prices
+                    <i class="fas fa-rupee-sign"></i>
+                    <span class="btn-text" data-i18n="features.market.check">Check Prices</span>
                 </button>
             </div>
             <div id="marketResult" class="result-area"></div>
@@ -150,7 +150,7 @@
 <!-- Soil Parameters Section -->
 <section class="soil-section" id="soil">
     <div class="container">
-        <h2 class="section-title">Soil Parameter Monitoring</h2>
+        <h2 class="section-title" data-i18n="soil.title">Soil Parameter Monitoring</h2>
         <div class="soil-dashboard">
             <div class="sensor-controls">
                 <select id="sensorSelect" class="sensor-select">
@@ -159,40 +159,43 @@
                     <option value="SOIL_003">Sensor 3 - Field C</option>
                 </select>
                 <button class="btn-primary" id="soilRefreshBtn">
-                    <i class="fas fa-sync"></i> Refresh Data
+                    <i class="fas fa-sync"></i>
+                    <span class="btn-text" data-i18n="soil.refresh">Refresh Data</span>
                 </button>
                 <button id="voiceAssistBtn" class="btn-primary">
-                    <i class="fas fa-volume-up"></i> Voice Assistance
+                    <i class="fas fa-volume-up"></i>
+                    <span class="btn-text" data-i18n="soil.voice">Voice Assistance</span>
                 </button>
             </div>
             <div id="soilData" class="soil-parameters">
                 <div class="param-card">
-                    <h4>Nitrogen (N)</h4>
+                    <h4 data-i18n="soil.nitrogen">Nitrogen (N)</h4>
                     <div class="param-value">--</div>
-                    <div class="param-status">Loading...</div>
+                    <div class="param-status" data-i18n="soil.loading">Loading...</div>
                 </div>
                 <div class="param-card">
-                    <h4>Phosphorous (P)</h4>
+                    <h4 data-i18n="soil.phosphorous">Phosphorous (P)</h4>
                     <div class="param-value">--</div>
-                    <div class="param-status">Loading...</div>
+                    <div class="param-status" data-i18n="soil.loading">Loading...</div>
                 </div>
                 <div class="param-card">
-                    <h4>Potassium (K)</h4>
+                    <h4 data-i18n="soil.potassium">Potassium (K)</h4>
                     <div class="param-value">--</div>
-                    <div class="param-status">Loading...</div>
+                    <div class="param-status" data-i18n="soil.loading">Loading...</div>
                 </div>
             </div>
 
-            <div id="soilAdviceResult" class="advice-box">
+            <div id="soilAdviceResult" class="advice-box" data-i18n="soil.advice">
                 <!-- Gemini advice will be displayed here -->
                 Your soil advice will appear here.
             </div>
         </div>
     </div>
-
 </section>
 
 <!-- Scripts: ES module entry -->
 <script type="module" src="/js/main.js"></script>
+<!-- Language translation module -->
+<script type="module" src="/js/translation.js"></script>
 </body>
 </html>
