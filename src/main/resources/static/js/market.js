@@ -1,43 +1,41 @@
-// src/main/resources/static/js/market.js
-export function initMarket() {
-  const select = document.getElementById('marketCrop');
-  const btn = document.getElementById('marketBtn');
-  const resultArea = document.getElementById('marketResult');
+console.log('✅ Market.js: File loaded');
 
-  if (!select || !btn || !resultArea) return;
+document.addEventListener("DOMContentLoaded", () => {
+    const marketBtn = document.getElementById("marketBtn");
+    const marketResult = document.getElementById("marketResult");
+    const marketCrop = document.getElementById("marketCrop");
+    const locationInput = document.getElementById("locationInput");
 
-  const prices = {
-    wheat: { current: '₹2,150/qt', trend: 'up',     change: '+₹50'  },
-    rice:  { current: '₹3,200/qt', trend: 'stable', change: '₹0'    },
-    onion: { current: '₹1,800/qt', trend: 'down',   change: '-₹120' },
-    potato:{ current: '₹1,200/qt', trend: 'up',     change: '+₹80'  }
-  };
+    marketBtn.addEventListener("click", async () => {
+        const crop = marketCrop.value;
+        const location = locationInput.value.trim();
 
-  btn.addEventListener('click', () => {
-    const crop = select.value;
-    if (!crop) {
-      alert('Please select a crop');
-      return;
-    }
-    const info = prices[crop];
-    const trendClass =
-      info.trend === 'up' ? 'trend-up' :
-      info.trend === 'down' ? 'trend-down' : 'trend-stable';
+        if (!crop) {
+            marketResult.innerHTML = "<p>Please select a crop.</p>";
+            return;
+        }
 
-    resultArea.innerHTML = `
-      <div class="market-prices">
-        <div style="display:flex;justify-content:space-between;align-items:center;">
-          <div style="font-size:1.1rem;font-weight:600;">${info.current}</div>
-          <div class="price-change ${trendClass}" style="font-size:0.85rem;">
-            <i class="fas fa-arrow-${info.trend === 'up' ? 'up' : info.trend === 'down' ? 'down' : 'right'}"></i>
-            ${info.change}
-          </div>
-        </div>
-        <div class="info-item" style="margin-top:8px;">
-          <span class="label">Trend:</span>
-          <span class="value ${trendClass}">${info.trend.toUpperCase()}</span>
-        </div>
-      </div>
-    `;
-  });
-}
+        if (!location) {
+            marketResult.innerHTML = "<p>Please enter a location.</p>";
+            return;
+        }
+
+        marketResult.innerHTML = '<p>Loading prices...</p>';
+        try {
+            const response = await fetch('/api/market/get-prices', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ crop, location })
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                marketResult.innerHTML = result.prices; // Render HTML directly
+            } else {
+                marketResult.innerHTML = "<p>Error: " + await response.text() + "</p>";
+            }
+        } catch (error) {
+            marketResult.innerHTML = "<p>Network error: " + error.message + "</p>";
+        }
+    });
+});

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kisan-Sathi - Dashboard</title>
+    <title>Weather Forecast</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 </head>
@@ -36,22 +36,27 @@
     </div>
 </header>
 
-<section class="hero-section" id="dashboard">
-    <div class="hero-container">
-        <div class="hero-content">
-            <h1>Smart Farming with AI Assistance</h1>
-            <p>Kisan-Sathi empowers farmers with AI-driven insights for sustainable agriculture.</p>
-            <div class="hero-buttons">
-                <button class="btn-primary">
-                    <i class="fas fa-chart-line"></i>
-                    <span class="btn-text">Analyze Your Crop</span>
+<section class="features-section" id="weather">
+    <div class="features-container">
+        <div class="feature-card weather-card">
+            <div class="feature-icon">
+                <i class="fas fa-cloud-sun"></i>
+            </div>
+            <h3>Weather Forecast</h3>
+            <p>Get real-time weather updates and 7-day forecasts for informed farming decisions.</p>
+            <div class="feature-actions">
+                <input type="text" id="locationInput" placeholder="Enter location" class="location-input"/>
+                <button class="feature-btn" id="weatherFetchBtn">
+                    <i class="fas fa-search"></i>
+                    <span class="btn-text">Get Weather</span>
                 </button>
             </div>
+            <div id="weatherResult" class="result-area"></div>
         </div>
     </div>
 </section>
-
 <script type="module" src="/js/main.js"></script>
+<script type="module " src="/js/weather.js"></script>
 <script type="module" src="/js/translation.js"></script>
 </body>
 </html>

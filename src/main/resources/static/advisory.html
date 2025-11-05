@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Crop Advisory</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="header">
+    <div class="header-container">
+        <div class="logo">
+            <i class="fas fa-seedling"></i>
+            <span class="logo-text">Kisan-Sathi</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-item active">Dashboard</a>
+            <a href="weather.html" class="nav-item">Weather</a>
+            <a href="disease.html" class="nav-item">Disease Detection</a>
+            <a href="soil-monitor.html" class="nav-item">Soil Monitor</a>
+            <a href="market.html" class="nav-item">Market Prices</a>
+            <a href="schemes.html" class="nav-item">Schemes Fetcher</a>
+            <a href="advisory.html" class="nav-item">AI Agro Advisor</a>
+        </nav>
+        <div class="header-right">
+            <div class="language-selector">
+                <i class="fas fa-globe"></i>
+                <select id="languageSelect" class="language-dropdown">
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी</option>
+                    <option value="mr">मराठी</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Updated Crop Advisory Section -->
+<section class="features-section" id="advisory">
+    <div class="features-container">
+        <div class="advisory-container">
+            <div class="advisory-header">
+                <div class="header-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="header-content">
+                    <h2 data-i18n="advisory.title">AI Crop Advisory</h2>
+                    <p data-i18n="advisory.subtitle">Get expert agricultural advice powered by AI. Ask any question about farming, crops, soil, or weather conditions.</p>
+                </div>
+            </div>
+
+            <div class="advisory-content">
+                <!-- Crop Advisory Section -->
+                <div class="advisory-left">
+                    <!-- Crop Selection and Query Input -->
+                    <div class="query-input-section">
+                        <div class="crop-selection">
+                            <label for="cropSelect">
+                                <i class="fas fa-seedling"></i> Select Crop Type:
+                            </label>
+                            <select id="cropSelect" class="crop-dropdown">
+                                <option value="">Select Crop (Optional)</option>
+                                <option value="wheat">Wheat (गेहूं)</option>
+                                <option value="rice">Rice (चावल)</option>
+                                <option value="corn">Corn (मक्का)</option>
+                                <option value="tomato">Tomato (टमाटर)</option>
+                                <option value="potato">Potato (आलू)</option>
+                                <option value="onion">Onion (प्याज)</option>
+                                <option value="sugarcane">Sugarcane (गन्ना)</option>
+                            </select>
+                        </div>
+                        <div class="input-wrapper">
+                            <textarea id="advisoryQuery" class="query-textarea" placeholder="Ask about crop selection, soil management, pest control, farming practices, or weather impact on your crops..." rows="3"></textarea>
+                            <button id="submitQuery" class="submit-btn">
+                                <i class="fas fa-paper-plane"></i>
+                                <span>Get Advice</span>
+                            </button>
+                        </div>
+                        <div class="query-suggestions">
+                            <span>Try asking:</span>
+                            <button class="suggestion-tag" onclick="setCropQuery('wheat', 'How to increase wheat yield in my region?')">Wheat yield tips</button>
+                            <button class="suggestion-tag" onclick="setCropQuery('rice', 'Best fertilizer for rice cultivation?')">Rice fertilizers</button>
+                            <button class="suggestion-tag" onclick="setCropQuery('tomato', 'How to prevent tomato leaf curl virus?')">Pest & disease help</button>
+                            <button class="suggestion-tag" onclick="setCropQuery('', 'Best crop rotation for my soil type?')">Crop rotation</button>
+                        </div>
+                    </div>
+                    <div id="advisoryResponse" class="response-container">
+                        <div class="response-header">
+                            <i class="fas fa-lightbulb"></i>
+                            <h3>AI Response</h3>
+                        </div>
+                        <div id="responseContent" class="response-content">
+                            <div class="initial-message">
+                                <i class="fas fa-seedling"></i>
+                                <p>Ask me anything about agriculture!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="module" src="/js/main.js"></script>
+<script type="module" src="/js/translation.js"></script>
+</body>
+</html>

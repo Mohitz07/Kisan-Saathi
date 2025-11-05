@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soil Monitoring</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="header">
+    <div class="header-container">
+        <div class="logo">
+            <i class="fas fa-seedling"></i>
+            <span class="logo-text">Kisan-Sathi</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-item active">Dashboard</a>
+            <a href="weather.html" class="nav-item">Weather</a>
+            <a href="disease.html" class="nav-item">Disease Detection</a>
+            <a href="soil-monitor.html" class="nav-item">Soil Monitor</a>
+            <a href="market.html" class="nav-item">Market Prices</a>
+            <a href="schemes.html" class="nav-item">Schemes Fetcher</a>
+            <a href="advisory.html" class="nav-item">AI Agro Advisor</a>
+        </nav>
+        <div class="header-right">
+            <div class="language-selector">
+                <i class="fas fa-globe"></i>
+                <select id="languageSelect" class="language-dropdown">
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी</option>
+                    <option value="mr">मराठी</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="soil-section" id="soil">
+    <div class="container">
+        <h2 class="section-title">Soil Parameter Monitoring</h2>
+        <div class="soil-dashboard">
+            <div class="sensor-controls">
+                <select id="sensorSelect" class="sensor-select">
+                    <option value="SOIL_001">Sensor 1 - Field A</option>
+                    <option value="SOIL_002">Sensor 2 - Field B</option>
+                    <option value="SOIL_003">Sensor 3 - Field C</option>
+                </select>
+                <button class="btn-primary" id="soilRefreshBtn">
+                    <i class="fas fa-sync"></i>
+                    <span class="btn-text">Refresh Data</span>
+                </button>
+                <button id="voiceAssistBtn" class="btn-primary">
+                    <i class="fas fa-volume-up"></i>
+                    <span class="btn-text">Voice Assistance</span>
+                </button>
+            </div>
+            <div id="soilData" class="soil-parameters">
+                <div class="param-card">
+                    <h4>Nitrogen (N)</h4>
+                    <div class="param-value">--</div>
+                    <div class="param-status">Loading...</div>
+                </div>
+                <div class="param-card">
+                    <h4>Phosphorous (P)</h4>
+                    <div class="param-value">--</div>
+                    <div class="param-status">Loading...</div>
+                </div>
+                <div class="param-card">
+                    <h4>Potassium (K)</h4>
+                    <div class="param-value">--</div>
+                    <div class="param-status">Loading...</div>
+                </div>
+            </div>
+            <div id="soilAdviceResult" class="advice-box">
+                Your soil advice will appear here.
+            </div>
+        </div>
+    </div>
+</section>
+<script type="module" src="/js/main.js"></script>
+<script type="module" src="/js/soil.js"></script>
+<script type="module" src="/js/translation.js"></script>
+</body>
+</html>

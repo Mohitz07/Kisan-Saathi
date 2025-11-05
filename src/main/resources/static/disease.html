@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kisan-Sathi - Dashboard</title>
+    <title>Disease Detection</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 </head>
@@ -36,22 +36,26 @@
     </div>
 </header>
 
-<section class="hero-section" id="dashboard">
-    <div class="hero-container">
-        <div class="hero-content">
-            <h1>Smart Farming with AI Assistance</h1>
-            <p>Kisan-Sathi empowers farmers with AI-driven insights for sustainable agriculture.</p>
-            <div class="hero-buttons">
-                <button class="btn-primary">
-                    <i class="fas fa-chart-line"></i>
-                    <span class="btn-text">Analyze Your Crop</span>
+<section class="features-section" id="disease">
+    <div class="features-container">
+        <div class="feature-card disease-card">
+            <div class="feature-icon">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <h3>Disease Detection</h3>
+            <p>Upload crop images for AI-powered disease identification and treatment recommendations.</p>
+            <div class="feature-actions">
+                <input type="file" id="diseaseImageInput" accept="image/*" style="display:none;"/>
+                <button class="feature-btn" id="diseaseUploadBtn">
+                    <i class="fas fa-camera"></i>
+                    <span class="btn-text">Upload Image</span>
                 </button>
             </div>
+            <div id="diseaseResult" class="result-area"></div>
         </div>
     </div>
 </section>
-
-<script type="module" src="/js/main.js"></script>
+<script type="module" src="/js/disease.js"></script>
 <script type="module" src="/js/translation.js"></script>
 </body>
 </html>

@@ -1,4 +1,3 @@
-// src/main/resources/static/js/advisory.js
 console.log('✅ Advisory.js: File loaded');
 
 export function initAdvisorySystem() {
@@ -69,27 +68,32 @@ function setupAdvisorySystem(queryInput, submitBtn, responseContent, cropSelect)
             console.log('✅ Advisory.js: API response status:', response.status);
 
             if (response.ok) {
-                const text = await response.text();
-                console.log('✅ Advisory.js: API response text:', text);
+                const result = await response.json();
+                console.log('Advisory Response Data:', result);
+                let advice = result.advice || "No advice generated.";
+                // Handle newlines
+                advice = advice.replace(/\\n/g, '\n');
 
+                const cropTag = selectedCrop ? `<span class="context-tag">${selectedCrop}</span>` : '';
                 responseContent.innerHTML = `
                     <div class="gemini-response">
                         <div class="response-meta">
                             <span class="response-source">
                                 <i class="fas fa-robot"></i>
-                                ${selectedCrop ? `<span class="context-tag">${selectedCrop}</span>` : ''}
+                                ${cropTag}
                             </span>
                         </div>
                         <div class="response-text">
-                            <p>${text.replace(/\n/g, '</p><p>')}</p>
+                            <p>${advice.replace(/\n/g, '</p><p>')}</p>
                         </div>
                     </div>
                 `;
+                console.log('Injected HTML:', responseContent.innerHTML);
             } else {
                 const errorText = await response.text();
-                console.error('❌ Advisory.js: API error:', errorText);
-                responseContent.innerHTML = `<div class="error-response"><i class="fas fa-exclamation-triangle"></i> त्रुटि: ${errorText}</div>`;
+                responseContent.innerHTML = `<div class="error-response"><i class="fas fa-exclamation-triangle"></i> ${errorText}</div>`;
             }
+
         } catch (error) {
             console.error('❌ Advisory.js: Network error:', error);
             responseContent.innerHTML = `<div class="error-response"><i class="fas fa-wifi-slash"></i> नेटवर्क त्रुटि: ${error.message}</div>`;
@@ -111,36 +115,9 @@ function setupAdvisorySystem(queryInput, submitBtn, responseContent, cropSelect)
 }
 
 function shouldUseCropSpecificEndpoint(query) {
-    const cropKeywords = [
-        'grow', 'cultivate', 'plant', 'harvest', 'yield', 'irrigation',
-        'खेती', 'उगाना', 'बोना', 'कटाई', 'उपज', 'सिंचाई',
-        'wheat', 'rice', 'corn', 'tomato', 'potato',
-        'गेहूं', 'चावल', 'मक्का', 'टमाटर', 'आलू'
-    ];
-
-    const managementKeywords = [
-        'soil', 'fertilizer', 'nutrient', 'deficiency', 'organic', 'compost',
-        'मिट्टी', 'उर्वरक', 'पोषक', 'कमी', 'जैविक', 'खाद',
-        'NPK', 'nitrogen', 'phosphorus', 'potassium'
-    ];
-
-    const queryLower = query.toLowerCase();
-
-    // Check for management keywords (higher priority)
-    if (managementKeywords.some(keyword => queryLower.includes(keyword))) {
-        return false;
-    }
-
-    // Check for crop-specific keywords
-    if (cropKeywords.some(keyword => queryLower.includes(keyword))) {
-        return true;
-    }
-
-    // Default to crop-specific for general queries
-    return true;
+    // ... your existing code
 }
 
-// Function to set crop and query from suggestion buttons
 function setCropQuery(crop, query) {
     document.getElementById('cropSelect').value = crop;
     document.getElementById('advisoryQuery').value = query;

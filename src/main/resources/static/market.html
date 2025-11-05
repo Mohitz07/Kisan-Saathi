@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kisan-Sathi - Dashboard</title>
+    <title>Market Prices</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 </head>
@@ -36,22 +36,33 @@
     </div>
 </header>
 
-<section class="hero-section" id="dashboard">
-    <div class="hero-container">
-        <div class="hero-content">
-            <h1>Smart Farming with AI Assistance</h1>
-            <p>Kisan-Sathi empowers farmers with AI-driven insights for sustainable agriculture.</p>
-            <div class="hero-buttons">
-                <button class="btn-primary">
-                    <i class="fas fa-chart-line"></i>
-                    <span class="btn-text">Analyze Your Crop</span>
+<section class="features-section" id="market">
+    <div class="features-container">
+        <div class="feature-card market-card">
+            <div class="feature-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>Market Prices</h3>
+            <p>Track current market prices for various crops and plan an effective selling strategy.</p>
+            <div class="feature-actions">
+                <select id="marketCrop" class="crop-select">
+                    <option value="wheat">Wheat</option>
+                    <option value="rice">Rice</option>
+                    <option value="onion">Onion</option>
+                    <option value="potato">Potato</option>
+                </select>
+                <input type="text" id="locationInput" class="location-input" placeholder="Enter location" />
+                <button class="feature-btn" id="marketBtn">
+                    <i class="fas fa-rupee-sign"></i>
+                    <span class="btn-text">Check Prices</span>
                 </button>
             </div>
+
+            <div id="marketResult" class="result-area"></div>
         </div>
     </div>
 </section>
-
-<script type="module" src="/js/main.js"></script>
+<script type="module" src="/js/market.js"></script>
 <script type="module" src="/js/translation.js"></script>
 </body>
 </html>

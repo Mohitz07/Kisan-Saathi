@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kisan-Sathi - Dashboard</title>
+    <title>Schemes</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 </head>
@@ -15,13 +15,13 @@
             <span class="logo-text">Kisan-Sathi</span>
         </div>
         <nav class="nav-menu">
-            <a href="index.html" class="nav-item active">Dashboard</a>
+            <a href="index.html" class="nav-item">Dashboard</a>
             <a href="weather.html" class="nav-item">Weather</a>
             <a href="disease.html" class="nav-item">Disease Detection</a>
             <a href="soil-monitor.html" class="nav-item">Soil Monitor</a>
             <a href="market.html" class="nav-item">Market Prices</a>
-            <a href="schemes.html" class="nav-item">Schemes Fetcher</a>
-            <a href="advisory.html" class="nav-item">AI Agro Advisor</a>
+            <a href="schemes.html" class="nav-item active">Schemes Fetcher</a>
+            <a href="advisory.html" class="nav-item">AI Agro Advisory</a>
         </nav>
         <div class="header-right">
             <div class="language-selector">
@@ -36,22 +36,27 @@
     </div>
 </header>
 
-<section class="hero-section" id="dashboard">
-    <div class="hero-container">
-        <div class="hero-content">
-            <h1>Smart Farming with AI Assistance</h1>
-            <p>Kisan-Sathi empowers farmers with AI-driven insights for sustainable agriculture.</p>
-            <div class="hero-buttons">
-                <button class="btn-primary">
-                    <i class="fas fa-chart-line"></i>
-                    <span class="btn-text">Analyze Your Crop</span>
-                </button>
-            </div>
+<section class="scheme-section" id="schemes">
+    <div class="container">
+        <br>
+        <br>
+        <h2 class="section-title">Available Schemes</h2>
+        <div class="state-selector">
+            <label for="stateSearch">Select or Search State:</label>
+            <input type="text" id="stateSearch" placeholder="Search for a state..." class="search-input">
+            <select id="stateSelect" class="state-dropdown">
+                <option value="">Select State</option>
+            </select>
+            <button id="fetchSchemesBtn" class="btn-primary">Fetch Schemes</button>
+        </div>
+        <div id="schemesBox" class="schemes-box">
+            <h3>Schemes for <span id="selectedState"></span></h3>
+            <div id="schemesContainer"></div>
         </div>
     </div>
 </section>
 
-<script type="module" src="/js/main.js"></script>
+<script type="module" src="/js/schemesFetcher.js"></script>
 <script type="module" src="/js/translation.js"></script>
 </body>
 </html>

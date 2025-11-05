@@ -147,12 +147,10 @@ public class CropAdvisoryController {
 
     private ResponseEntity<String> callGeminiAPI(String prompt) {
         try {
-            // Create request body for Gemini API
             GeminiRequestBody requestBody = new GeminiRequestBody(
                     Arrays.asList(new Content(Arrays.asList(new Part(prompt))))
             );
 
-            // Call Gemini API
             RestTemplate restTemplate = new RestTemplate();
             String apiUrlWithKey = geminiApiUrl + "?key=" + geminiApiKey;
 
@@ -166,28 +164,28 @@ public class CropAdvisoryController {
             if (rawResponse.getStatusCode() == HttpStatus.OK) {
                 ObjectMapper mapper = new ObjectMapper();
                 Map<?, ?> responseMap = mapper.readValue(rawResponse.getBody(), Map.class);
-
                 List<?> candidates = (List<?>) responseMap.get("candidates");
                 if (candidates != null && !candidates.isEmpty()) {
                     Map<?, ?> candidate = (Map<?, ?>) candidates.get(0);
                     Map<?, ?> content = (Map<?, ?>) candidate.get("content");
                     List<?> parts = (List<?>) content.get("parts");
-
                     if (parts != null && !parts.isEmpty()) {
                         Map<?, ?> part = (Map<?, ?>) parts.get(0);
                         String generatedText = (String) part.get("text");
-                        return ResponseEntity.ok(generatedText);
+                        String safeText = generatedText.replace("\"", "\\\"").replace("\n", "\\n");
+                        return ResponseEntity.ok("{\"advice\": \"" + safeText + "\"}");
                     }
                 }
-                return ResponseEntity.ok("Try Again");
+                return ResponseEntity.ok("{\"advice\": \"No advice generated.\"}");
             } else {
                 return ResponseEntity.status(rawResponse.getStatusCode())
-                        .body("API error: " + rawResponse.getStatusCode());
+                        .body("{\"advice\": \"API error: " + rawResponse.getStatusCode() + "\"}");
             }
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("API call error: " + e.getMessage());
+                    .body("{\"advice\": \"API call error: " + e.getMessage() + "\"}");
         }
     }
+
 }
