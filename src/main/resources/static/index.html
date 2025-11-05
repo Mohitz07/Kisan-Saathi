@@ -3,11 +3,525 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kisan-Sathi - Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Kisan-Sathi - Smart Farming Platform</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2d3748;
+            line-height: 1.6;
+            background-color: #f5f7fa;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 1rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2e7d32;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            animation: gentle-bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes gentle-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: #2d3748;
+            font-weight: 500;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-item:hover {
+            background: rgba(76, 175, 80, 0.1);
+            color: #2e7d32;
+            transform: translateY(-2px);
+        }
+
+        .nav-item.active {
+            background: #4caf50;
+            color: white;
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .language-selector {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .language-selector i {
+            color: #4caf50;
+        }
+
+        .language-dropdown {
+            padding: 0.4rem 0.8rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .language-dropdown:hover {
+            border-color: #4caf50;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #e8f5e9 0%, #f1f8f4 50%, #e8f5e9 100%);
+            padding: 5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(76, 175, 80, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(139, 195, 74, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            color: #1b5e20;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .hero-content > p {
+            font-size: 1.15rem;
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            margin-top: 2.5rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4caf50, #66bb6a);
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.15rem;
+            border-radius: 12px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(-1px);
+        }
+
+        .stats-banner {
+            background: white;
+            padding: 3rem 2rem;
+            box-shadow: 0 -2px 20px rgba(0,0,0,0.05);
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-card {
+            padding: 1rem;
+            position: relative;
+        }
+
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 60%;
+            background: linear-gradient(to bottom, transparent, #e2e8f0, transparent);
+        }
+
+        .stat-card:last-child::after {
+            display: none;
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            color: #4caf50;
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #718096;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        .features-section {
+            background: #f7fafc;
+            padding: 5rem 2rem;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features-container h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            color: #1b5e20;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .features-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #718096;
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #4caf50, #66bb6a, #81c784);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .feature-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(76, 175, 80, 0.2);
+        }
+
+        .feature-item i {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #4caf50, #66bb6a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .feature-item h3 {
+            font-size: 1.6rem;
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .feature-item p {
+            color: #4a5568;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .benefits-section {
+            background: linear-gradient(135deg, #2e7d32 0%, #388e3c 100%);
+            padding: 5rem 2rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefits-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .benefits-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .benefits-container h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .benefits-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 4rem;
+            opacity: 0.95;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .benefit-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s;
+        }
+
+        .benefit-card:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-5px);
+        }
+
+        .benefit-card i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card p {
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        .cta-section {
+            background: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-container h2 {
+            font-size: 2.8rem;
+            color: #1b5e20;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .cta-container p {
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #2e7d32;
+            border: 2px solid #4caf50;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .btn-secondary:hover {
+            background: #4caf50;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .nav-menu {
+                width: 100%;
+                justify-content: center;
+            }
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+            .stat-card::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
 </head>
 <body>
+<!-- Your header, hero, features, benefits, CTA sections as before -->
 <header class="header">
     <div class="header-container">
         <div class="logo">
@@ -22,17 +536,18 @@
             <a href="market.html" class="nav-item">Market Prices</a>
             <a href="schemes.html" class="nav-item">Schemes Fetcher</a>
             <a href="advisory.html" class="nav-item">AI Agro Advisor</a>
-        </nav>
-        <div class="header-right">
-            <div class="language-selector">
-                <i class="fas fa-globe"></i>
-                <select id="languageSelect" class="language-dropdown">
-                    <option value="en">English</option>
-                    <option value="hi">हिंदी</option>
-                    <option value="mr">मराठी</option>
-                </select>
+            <div class="header-right">
+                <div class="language-selector">
+                    <i class="fas fa-globe"></i>
+                    <select id="languageSelect" class="language-dropdown">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी</option>
+                        <option value="mr">मराठी</option>
+                    </select>
+                </div>
             </div>
-        </div>
+        </nav>
+
     </div>
 </header>
 
@@ -40,14 +555,79 @@
     <div class="hero-container">
         <div class="hero-content">
             <h1>Smart Farming with AI Assistance</h1>
-            <p>Kisan-Sathi empowers farmers with AI-driven insights for sustainable agriculture.</p>
-            <div class="hero-buttons">
-                <button class="btn-primary">
-                    <i class="fas fa-chart-line"></i>
-                    <span class="btn-text">Analyze Your Crop</span>
-                </button>
+            <p>Kisan-Sathi is a comprehensive AI-powered platform that empowers farmers with real-time insights, expert advice, and actionable tools for sustainable agriculture.</p>
+            <p>Our dashboard is designed for small-scale farmers, combining modern technology with traditional practices, making it easy to maximize productivity and farm income.</p>
+        </div>
+    </div>
+</section>
+
+<section class="features-section">
+    <div class="features-container">
+        <h2>How Kisan-Sathi Works</h2>
+        <p class="features-subtitle">Comprehensive agricultural solutions powered by cutting-edge AI technology</p>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <i class="fas fa-cloud-sun"></i>
+                <h3>Weather Forecast</h3>
+                <p>Get real-time and predictive weather conditions for your region to plan sowing, harvesting, and irrigation activities.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-bug"></i>
+                <h3>Disease Detection</h3>
+                <p>Quickly identify crop diseases using AI image analysis and get expert recommendations for treatment.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-poll"></i>
+                <h3>Soil Monitor</h3>
+                <p>Track soil health, nutrient levels, and moisture in real-time for optimal crop growth.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-tags"></i>
+                <h3>Market Prices</h3>
+                <p>Access up-to-date local and national market prices for crops to make informed selling decisions.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-clipboard-check"></i>
+                <h3>Schemes Fetcher</h3>
+                <p>Stay updated on government agricultural schemes, subsidies, and incentives relevant to your region and crop type.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-robot"></i>
+                <h3>AI Agro Advisor</h3>
+                <p>Chat with our AI-powered advisor for personalized crop management tips, fertilization schedules, and pest control advice.</p>
             </div>
         </div>
+    </div>
+</section>
+
+<section class="benefits-section">
+    <div class="benefits-container">
+        <h2>Why Choose Kisan-Sathi?</h2>
+        <p class="benefits-subtitle">Empowering farmers with technology for better yields and sustainable farming</p>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <i class="fas fa-brain"></i>
+                <h3>AI-Powered Intelligence</h3>
+                <p>Make data-driven decisions that increase productivity and reduce waste.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-language"></i>
+                <h3>Multilingual Support</h3>
+                <p>Access all features in English, Hindi, and Marathi.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Easy to Use</h3>
+                <p>Simple, intuitive interface for farmers of all tech levels.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="cta-container">
+        <h2>Ready to Transform Your Farming?</h2>
+        <p>Join thousands of farmers already using Kisan-Sathi today!</p>
     </div>
 </section>
 
