@@ -32,3 +32,34 @@ document.addEventListener('DOMContentLoaded', () => {
   initDisease();
   initMarket();
 });
+
+// src/main/resources/static/js/main.js
+console.log('✅ Main.js: Application start');
+
+document.addEventListener('DOMContentLoaded', async () => {
+    console.log('✅ Main.js: DOM Content Loaded');
+
+    try {
+        // Try to import advisory.js
+        const module = await import('./advisory.js');
+        console.log('✅ Main.js: Module imported:', module);
+
+        if (module && typeof module.initAdvisorySystem === 'function') {
+            module.initAdvisorySystem();
+            console.log('✅ Main.js: Advisory system initialized');
+        } else {
+            console.error('❌ Main.js: initAdvisorySystem not found in module');
+        }
+    } catch (error) {
+        console.error('❌ Main.js: Failed to load advisory.js:', error);
+
+        // Fallback: try to load script dynamically
+        const script = document.createElement('script');
+        script.src = '/js/advisory.js';
+        script.type = 'module';
+        script.onerror = () => {
+            console.error('❌ Main.js: Failed to load advisory.js dynamically');
+        };
+        document.head.appendChild(script);
+    }
+});

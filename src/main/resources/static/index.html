@@ -99,29 +99,6 @@
             <div id="weatherResult" class="result-area"></div>
         </div>
 
-        <!-- Crop Advisory Card -->
-        <div class="feature-card advisory-card" id="advisory">
-            <div class="feature-icon">
-                <i class="fas fa-lightbulb"></i>
-            </div>
-            <h3 data-i18n="features.advisory.title">Crop Advisory</h3>
-            <p data-i18n="features.advisory.desc">Receive personalized crop recommendations based on soil conditions and weather data.</p>
-            <div class="feature-actions">
-                <select id="cropSelect" class="crop-select">
-                    <option value="" data-i18n="features.advisory.select">Select Crop Type</option>
-                    <option value="wheat">Wheat</option>
-                    <option value="rice">Rice</option>
-                    <option value="corn">Corn</option>
-                    <option value="tomato">Tomato</option>
-                </select>
-                <button class="feature-btn" id="advisoryBtn">
-                    <i class="fas fa-search-plus"></i>
-                    <span class="btn-text" data-i18n="features.advisory.get">Get Advice</span>
-                </button>
-            </div>
-            <div id="advisoryResult" class="result-area"></div>
-        </div>
-
         <!-- Market Prices Card -->
         <div class="feature-card market-card" id="market">
             <div class="feature-icon">
@@ -144,8 +121,124 @@
             </div>
             <div id="marketResult" class="result-area"></div>
         </div>
+
+        <!-- Updated Crop Advisory Section -->
+        <section class="features-section" id="advisory">
+            <div class="features-container">
+                <div class="advisory-container">
+                    <div class="advisory-header">
+                        <div class="header-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="header-content">
+                            <h2 data-i18n="advisory.title">AI Crop Advisory</h2>
+                            <p data-i18n="advisory.subtitle">Get expert agricultural advice powered by AI. Ask any question about farming, crops, soil, or weather conditions.</p>
+                        </div>
+                    </div>
+
+                    <div class="advisory-content">
+                        <!-- Crop Advisory Section -->
+                        <div class="advisory-left">
+                            <!-- Crop Selection and Query Input -->
+                            <div class="query-input-section">
+                                <div class="crop-selection">
+                                    <label for="cropSelect">
+                                        <i class="fas fa-seedling"></i> Select Crop Type:
+                                    </label>
+                                    <select id="cropSelect" class="crop-dropdown">
+                                        <option value="">Select Crop (Optional)</option>
+                                        <option value="wheat">Wheat (गेहूं)</option>
+                                        <option value="rice">Rice (चावल)</option>
+                                        <option value="corn">Corn (मक्का)</option>
+                                        <option value="tomato">Tomato (टमाटर)</option>
+                                        <option value="potato">Potato (आलू)</option>
+                                        <option value="onion">Onion (प्याज)</option>
+                                        <option value="sugarcane">Sugarcane (गन्ना)</option>
+                                    </select>
+                                </div>
+                                <div class="input-wrapper">
+                                    <textarea id="advisoryQuery" class="query-textarea" placeholder="Ask about crop selection, soil management, pest control, farming practices, or weather impact on your crops..." rows="3"></textarea>
+                                    <button id="submitQuery" class="submit-btn">
+                                        <i class="fas fa-paper-plane"></i>
+                                        <span>Get Advice</span>
+                                    </button>
+                                </div>
+                                <div class="query-suggestions">
+                                    <span>Try asking:</span>
+                                    <button class="suggestion-tag" onclick="setCropQuery('wheat', 'How to increase wheat yield in my region?')">Wheat yield tips</button>
+                                    <button class="suggestion-tag" onclick="setCropQuery('rice', 'Best fertilizer for rice cultivation?')">Rice fertilizers</button>
+                                    <button class="suggestion-tag" onclick="setCropQuery('tomato', 'How to prevent tomato leaf curl virus?')">Pest & disease help</button>
+                                    <button class="suggestion-tag" onclick="setCropQuery('', 'Best crop rotation for my soil type?')">Crop rotation</button>
+                                </div>
+                            </div>
+                            <div id="advisoryResponse" class="response-container">
+                                <div class="response-header">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <h3>AI Response</h3>
+                                </div>
+                                <div id="responseContent" class="response-content">
+                                    <div class="initial-message">
+                                        <i class="fas fa-seedling"></i>
+                                        <p>Ask me anything about agriculture!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </section>
+
+<!-- Scheme Fetcher Section -->
+<div class="advisory-right">
+    <div class="state-selector">
+        <label for="stateSearch">Select or Search State:</label>
+        <input type="text" id="stateSearch" placeholder="Search for a state..." class="search-input">
+        <select id="stateSelect" class="state-dropdown">
+            <option value="">Select State</option>
+            <option value="Andhra Pradesh">Andhra Pradesh</option>
+            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+            <option value="Assam">Assam</option>
+            <option value="Bihar">Bihar</option>
+            <option value="Chhattisgarh">Chhattisgarh</option>
+            <option value="Goa">Goa</option>
+            <option value="Gujarat">Gujarat</option>
+            <option value="Haryana">Haryana</option>
+            <option value="Himachal Pradesh">Himachal Pradesh</option>
+            <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+            <option value="Jharkhand">Jharkhand</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Kerala">Kerala</option>
+            <option value="Ladakh">Ladakh</option>
+            <option value="Lakshadweep">Lakshadweep</option>
+            <option value="Madhya Pradesh">Madhya Pradesh</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Manipur">Manipur</option>
+            <option value="Meghalaya">Meghalaya</option>
+            <option value="Mizoram">Mizoram</option>
+            <option value="Nagaland">Nagaland</option>
+            <option value="Odisha">Odisha</option>
+            <option value="Punjab">Punjab</option>
+            <option value="Rajasthan">Rajasthan</option>
+            <option value="Sikkim">Sikkim</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <option value="Telangana">Telangana</option>
+            <option value="Tripura">Tripura</option>
+            <option value="Uttar Pradesh">Uttar Pradesh</option>
+            <option value="Uttarakhand">Uttarakhand</option>
+            <option value="West Bengal">West Bengal</option>
+        </select>
+        <button id="fetchSchemesBtn" class="btn-primary">Fetch Schemes</button>
+    </div>
+
+    <!-- Schemes Display Box -->
+    <div id="schemesBox" class="schemes-box" style="margin-top: 1rem; border: 1px solid #ccc; padding: 1rem; border-radius: 8px; display: none;">
+        <h3>Schemes for <span id="selectedState"></span></h3>
+        <div id="schemesContainer"></div>
+    </div>
+</div>
 
 <!-- Soil Parameters Section -->
 <section class="soil-section" id="soil">
@@ -197,5 +290,6 @@
 <script type="module" src="/js/main.js"></script>
 <!-- Language translation module -->
 <script type="module" src="/js/translation.js"></script>
+<script src="/js/schemesFetcher.js"></script>
 </body>
 </html>

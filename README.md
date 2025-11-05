@@ -15,6 +15,3 @@
 
 ## Soil NPK, temperature, moisture, ph sensor
 ![img_5.png](img_5.png)
-
-## Connections
-![img_6.png](img_6.png)
