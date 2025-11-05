@@ -18,7 +18,12 @@ public class SchemeController {
     @Value("${gemini.api.key}")
     private String geminiApiKey;
 
-    // Request model for structured output
+    // Request model
+    public static class FetchRequest {
+        public String state;
+        public String lang;
+    }
+
     static class Schema {
         public String type = "object";
         public PropertiesSchema properties;
@@ -44,8 +49,6 @@ public class SchemeController {
         }
     }
 
-
-    // Request body for structured output
     static class GeminiRequestBody {
         public List<Content> contents;
         public GenerationConfig generationConfig;
@@ -75,14 +78,11 @@ public class SchemeController {
         }
     }
 
-    // Endpoint to fetch schemes
     @PostMapping("/fetch")
-    public ResponseEntity<String> fetchSchemes(@RequestBody Map<String, String> request) {
+    public ResponseEntity<String> fetchSchemes(@RequestBody FetchRequest request) {
         try {
-            // Initialize the schema
             // Schema setup
             Schema.ItemsSchema itemsSchema = new Schema.ItemsSchema();
-
             Schema.TypeSchema titleSchema = new Schema.TypeSchema();
             Schema.TypeSchema descSchema = new Schema.TypeSchema();
             Schema.TypeSchema linkSchema = new Schema.TypeSchema();
@@ -91,29 +91,23 @@ public class SchemeController {
             itemsSchema.properties.put("description", descSchema);
             itemsSchema.properties.put("link", linkSchema);
 
-            // Initialize PropertiesSchema
             Schema.PropertiesSchema propertiesSchema = new Schema.PropertiesSchema();
             propertiesSchema.schemes = new Schema.SchemesSchema();
             propertiesSchema.schemes.items = itemsSchema;
 
-// Initialize the full schema
             Schema schema = new Schema();
             schema.properties = propertiesSchema;
             schema.required = Arrays.asList("schemes");
 
-
-            String state = request.get("state");
             String prompt = String.format(
                     "Generate a list of current agriculture schemes for %s in India. " +
-                            "Return your answer in strict JSON format as requested.",
-                    state
+                            "Answer in %s. Return answer in strict JSON format as requested.",
+                    request.state, request.lang
             );
 
             GeminiRequestBody requestBody = new GeminiRequestBody(
                     Arrays.asList(new Content(Arrays.asList(new Part(prompt))))
             );
-
-            // Assign schema to the generation config
             requestBody.generationConfig.responseSchema = schema;
 
             RestTemplate restTemplate = new RestTemplate();

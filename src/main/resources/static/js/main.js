@@ -5,7 +5,6 @@ import { getDatabase } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-
 import { initWeather } from './weather.js';
 import { initDisease } from './disease.js';
 import { initSoil } from './soil.js';
-import { initMarket } from './market.js';
 import { initNav } from './nav.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -30,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initSoil(db);
   initWeather();
   initDisease();
-  initMarket();
 });
 
 // src/main/resources/static/js/main.js

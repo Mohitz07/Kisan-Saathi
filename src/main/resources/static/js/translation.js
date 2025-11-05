@@ -1,18 +1,23 @@
-// js/translation.js
 class LanguageManager {
     constructor() {
         this.translations = {
             en: {
-                header: {
+                nav: {
                     dashboard: 'Dashboard',
                     weather: 'Weather',
                     disease: 'Disease Detection',
                     soil: 'Soil Monitor',
                     market: 'Market Prices',
+                    schemes: 'Schemes Fetcher',
+                    advisory: 'AI Agro Advisory',
+                    analytics: 'Analytics',
                     more: 'More',
-                    settings: 'Settings',
-                    cropAdvisory: 'Crop Advisory',
-                    analytics: 'Analytics'
+                    settings: 'Settings'
+                },
+                image: {
+                    upload: 'Upload Image',
+                    analysis: 'Image Analysis',
+                    result: 'Analysis Result'
                 },
                 hero: {
                     title: 'Smart Farming with AI Assistance',
@@ -28,7 +33,7 @@ class LanguageManager {
                     },
                     weather: {
                         title: 'Weather Forecast',
-                        desc: 'Get real-time weather updates and 7-day forecasts for informed farming decisions.',
+                        desc: 'Get real-time weather updates.',
                         get: 'Get Weather',
                         placeholder: 'Enter location'
                     },
@@ -57,16 +62,22 @@ class LanguageManager {
                 }
             },
             hi: {
-                header: {
+                nav: {
                     dashboard: 'डैशबोर्ड',
                     weather: 'मौसम',
                     disease: 'रोग का पता लगाना',
                     soil: 'मिट्टी निगरानी',
                     market: 'बाजार की कीमतें',
+                    schemes: 'योजना खोजना',
+                    advisory: 'एआई कृषि सलाह',
+                    analytics: 'विश्लेषण',
                     more: 'अधिक',
-                    settings: 'सेटिंग्स',
-                    cropAdvisory: 'फसल सलाह',
-                    analytics: 'विश्लेषण'
+                    settings: 'सेटिंग्स'
+                },
+                image: {
+                    upload: 'छवि अपलोड करें',
+                    analysis: 'छवि विश्लेषण',
+                    result: 'विश्लेषण परिणाम'
                 },
                 hero: {
                     title: 'एआई सहायता के साथ स्मार्ट खेती',
@@ -82,7 +93,7 @@ class LanguageManager {
                     },
                     weather: {
                         title: 'मौसम पूर्वानुमान',
-                        desc: 'जागरूक खेती के निर्णय के लिए वास्तविक समय मौसम अद्यतन और 7-दिवसीय पूर्वानुमान प्राप्त करें।',
+                        desc: 'जागरूक खेती के निर्णय के लिए वास्तविक समय मौसम प्राप्त करें।',
                         get: 'मौसम प्राप्त करें',
                         placeholder: 'स्थान दर्ज करें'
                     },
@@ -111,16 +122,22 @@ class LanguageManager {
                 }
             },
             mr: {
-                header: {
+                nav: {
                     dashboard: 'डॅशबोर्ड',
                     weather: 'हवामान',
                     disease: 'आजार निदान',
                     soil: 'मृदा निरीक्षण',
                     market: 'बाजार भाव',
+                    schemes: 'योजना शोधा',
+                    advisory: 'एआय कृषी सल्लागार',
+                    analytics: 'विश्लेषण',
                     more: 'अधिक',
-                    settings: 'सेटिंग्स',
-                    cropAdvisory: 'पिक सल्लाह',
-                    analytics: 'विश्लेषण'
+                    settings: 'सेटिंग्स'
+                },
+                image: {
+                    upload: 'छायाचित्र अपलोड करा',
+                    analysis: 'अपलोड विश्लेषण',
+                    result: 'अपलोड परिणाम'
                 },
                 hero: {
                     title: 'एआय सहायतेसह स्मार्ट शेती',
@@ -136,7 +153,7 @@ class LanguageManager {
                     },
                     weather: {
                         title: 'हवामान अंदाज',
-                        desc: 'माहितीपूर्वक शेतीच्या निर्णयांसाठी वास्तविक वेळ हवामान अद्यतने आणि 7-दिवसांचा अंदाज मिळवा.',
+                        desc: 'माहितीपूर्वक शेतीच्या निर्णयांसाठी वास्तविक वेळ हवामान अंदाज मिळवा.',
                         get: 'हवामान मिळवा',
                         placeholder: 'स्थान द्या'
                     },
@@ -169,47 +186,33 @@ class LanguageManager {
         this.currentLanguage = localStorage.getItem('preferredLanguage') || 'en';
     }
 
-    // Initialize language manager
     init() {
         this.wrapButtonText();
         this.updateLanguage(this.currentLanguage);
         this.setupLanguageSelector();
     }
 
-    // Add span wrappers to button text for easier targeting
     wrapButtonText() {
         const buttons = document.querySelectorAll('button, .nav-item, .feature-btn');
         buttons.forEach(btn => {
-            if (!btn.querySelector('.btn-text') && !btn.classList.contains('nav-item') && !btn.classList.contains('feature-btn')) {
-                const text = btn.textContent.trim();
-                if (text) {
+            const text = btn.textContent.trim();
+            if (text && !btn.querySelector('.btn-text') && !btn.querySelector('.nav-text')) {
+                if (btn.classList.contains('nav-item')) {
+                    btn.innerHTML = `<span class="nav-text">${text}</span>`;
+                } else {
                     btn.innerHTML = `<span class="btn-text">${text}</span>`;
                 }
             }
         });
 
-        // Wrap nav items
-        document.querySelectorAll('.nav-item').forEach(item => {
-            if (!item.querySelector('.nav-text')) {
-                const text = item.textContent.trim();
-                if (text && !item.querySelector('i')) {
-                    item.innerHTML = `<span class="nav-text">${text}</span>`;
-                }
-            }
-        });
-
-        // Wrap feature card text
-        document.querySelectorAll('.feature-card h3, .feature-card p').forEach(el => {
-            if (!el.querySelector('.card-text')) {
-                const text = el.textContent.trim();
-                if (text) {
-                    el.innerHTML = `<span class="card-text">${text}</span>`;
-                }
+        document.querySelectorAll('.feature-card h3, .feature-card p, #imageAnalysisResult h3').forEach(el => {
+            const text = el.textContent.trim();
+            if (text && !el.querySelector('.card-text')) {
+                el.innerHTML = `<span class="card-text">${text}</span>`;
             }
         });
     }
 
-    // Setup language selector
     setupLanguageSelector() {
         const selector = document.getElementById('languageSelect');
         if (selector) {
@@ -220,47 +223,36 @@ class LanguageManager {
         }
     }
 
-    // Change language
     changeLanguage(lang) {
         this.currentLanguage = lang;
         this.updateLanguage(lang);
         localStorage.setItem('preferredLanguage', lang);
     }
 
-    // Update all text elements
     updateLanguage(lang) {
         const t = this.translations[lang];
-
-        // Update html lang attribute
         document.documentElement.setAttribute('lang', lang);
 
-        // Update header navigation
-        this.updateText('[href="#dashboard"] .nav-text', t.header.dashboard);
-        this.updateText('[href="#weather"] .nav-text', t.header.weather);
-        this.updateText('[href="#disease"] .nav-text', t.header.disease);
-        this.updateText('[href="#soil"] .nav-text', t.header.soil);
-        this.updateText('[href="#market"] .nav-text', t.header.market);
+        // Update nav bar
+        this.updateText('[href="index.html"] .nav-text', t.nav.dashboard);
+        this.updateText('[href="weather.html"] .nav-text', t.nav.weather);
+        this.updateText('[href="disease.html"] .nav-text', t.nav.disease);
+        this.updateText('[href="soil-monitor.html"] .nav-text', t.nav.soil);
+        this.updateText('[href="market.html"] .nav-text', t.nav.market);
+        this.updateText('[href="schemes.html"] .nav-text', t.nav.schemes);
+        this.updateText('[href="advisory.html"] .nav-text', t.nav.advisory);
 
-        // Update dropdown
-        this.updateText('.dropdown-menu a[href="#advisory"] .nav-text', t.header.cropAdvisory);
-        this.updateText('.dropdown-menu a[href="#analytics"] .nav-text', t.header.analytics);
-        this.updateText('.dropdown-menu a[href="#settings"] .nav-text', t.header.settings);
+        // Update image
+        this.updateText('#diseaseUploadBtn .btn-text', t.image.upload);
+        this.updateText('#imageAnalysisResult h3 .card-text', t.image.result);
 
-        // Update dropdown toggle
-        const toggle = document.querySelector('.dropdown-toggle');
-        if (toggle) {
-            const icon = toggle.querySelector('i');
-            toggle.innerHTML = `<span class="nav-text">${t.header.more}</span> `;
-            if (icon) toggle.appendChild(icon);
-        }
-
-        // Update hero section
+        // Update hero
         this.updateText('.hero-content h1', t.hero.title);
         this.updateText('.hero-content p', t.hero.subtitle);
         this.updateText('#analyzeCropBtn .btn-text', t.hero.analyze);
         this.updateText('.btn-secondary .btn-text', t.hero.knowledge);
 
-        // Update features section
+        // Update features
         this.updateText('#disease .feature-card h3 .card-text', t.features.disease.title);
         this.updateText('#disease .feature-card p .card-text', t.features.disease.desc);
         this.updateText('#diseaseUploadBtn .btn-text', t.features.disease.upload);
@@ -280,23 +272,19 @@ class LanguageManager {
         this.updateText('#marketBtn .btn-text', t.features.market.check);
         this.updateElement('#marketCrop option[value=""]', 'textContent', t.features.market.select);
 
-        // Update soil section
+        // Update soil
         this.updateText('.soil-section .section-title', t.soil.title);
         this.updateText('#soilRefreshBtn .btn-text', t.soil.refresh);
         this.updateText('#voiceAssistBtn .btn-text', t.soil.voice);
-
         this.updateText('.param-card:nth-child(1) h4', t.soil.nitrogen);
         this.updateText('.param-card:nth-child(2) h4', t.soil.phosphorous);
         this.updateText('.param-card:nth-child(3) h4', t.soil.potassium);
-
         document.querySelectorAll('.param-status').forEach(el => {
             el.textContent = t.soil.loading;
         });
-
         this.updateElement('#soilAdviceResult', 'textContent', t.soil.advice);
     }
 
-    // Helper to update text content
     updateText(selector, text) {
         const elements = document.querySelectorAll(selector);
         elements.forEach(el => {
@@ -309,7 +297,6 @@ class LanguageManager {
         });
     }
 
-    // Helper to update element properties
     updateElement(selector, property, value) {
         const element = document.querySelector(selector);
         if (element) {
@@ -318,7 +305,6 @@ class LanguageManager {
     }
 }
 
-// Initialize language manager when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     window.languageManager = new LanguageManager();
     window.languageManager.init();

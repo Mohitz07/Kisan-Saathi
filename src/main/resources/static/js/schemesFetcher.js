@@ -18,7 +18,7 @@ function populateStates() {
     });
 }
 
-// Filter states in dropdown based on search input
+// Filter states in dropdown
 function filterStates() {
     const searchInput = document.getElementById("stateSearch").value.toLowerCase();
     const stateSelect = document.getElementById("stateSelect");
@@ -31,17 +31,16 @@ function filterStates() {
         option.textContent = state;
         stateSelect.appendChild(option);
     });
-    // Force refresh dropdown (optional, for some browsers)
-    stateSelect.dispatchEvent(new Event('change'));
 }
 
-// Fetch schemes from backend (Spring Boot SchemeController)
+// Fetch schemes from backend
 async function fetchSchemes(state) {
+    const lang = document.getElementById("languageSelect").value; // Add language
     try {
         const response = await fetch('/api/schemes/fetch', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ state: state })
+            body: JSON.stringify({ state: state, lang: lang }) // Pass language
         });
         const data = await response.json();
         return data.schemes || [];
@@ -51,12 +50,11 @@ async function fetchSchemes(state) {
     }
 }
 
-// Display schemes on the page
-function displaySchemes(schemes) {
+// Display schemes
+function displaySchemes(schemes, state) {
     const schemesBox = document.getElementById("schemesBox");
     const schemesContainer = document.getElementById("schemesContainer");
     const selectedState = document.getElementById("selectedState");
-    const state = document.getElementById("stateSelect").value;
     selectedState.textContent = state;
 
     schemesBox.style.display = "block";
@@ -88,6 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
         const schemes = await fetchSchemes(state);
-        displaySchemes(schemes);
+        displaySchemes(schemes, state);
     });
 });
+
