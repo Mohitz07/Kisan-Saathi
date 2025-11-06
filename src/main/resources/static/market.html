@@ -15,13 +15,13 @@
             <span class="logo-text">Kisan-Sathi</span>
         </div>
         <nav class="nav-menu">
-            <a href="index.html" class="nav-item active">Dashboard</a>
-            <a href="weather.html" class="nav-item">Weather</a>
-            <a href="disease.html" class="nav-item">Disease Detection</a>
-            <a href="soil-monitor.html" class="nav-item">Soil Monitor</a>
-            <a href="market.html" class="nav-item">Market Prices</a>
-            <a href="schemes.html" class="nav-item">Schemes Fetcher</a>
-            <a href="advisory.html" class="nav-item">AI Agro Advisor</a>
+            <a href="index.html" class="nav-item"><span class="nav-text">Dashboard</span></a>
+            <a href="weather.html" class="nav-item"><span class="nav-text">Weather</span></a>
+            <a href="disease.html" class="nav-item"><span class="nav-text">Disease Detection</span></a>
+            <a href="soil-monitor.html" class="nav-item"><span class="nav-text">Soil Monitor</span></a>
+            <a href="market.html" class="nav-item active"><span class="nav-text">Market Prices</span></a>
+            <a href="schemes.html" class="nav-item"><span class="nav-text">Schemes Fetcher</span></a>
+            <a href="advisory.html" class="nav-item"><span class="nav-text">AI Agro Advisor</span></a>
         </nav>
         <div class="header-right">
             <div class="language-selector">
@@ -36,32 +36,62 @@
     </div>
 </header>
 
-<section class="features-section" id="market">
-    <div class="features-container">
-        <div class="feature-card market-card">
-            <div class="feature-icon">
+<section class="market-section">
+    <div class="container">
+        <div class="market-header-content">
+            <div class="market-icon-wrapper">
                 <i class="fas fa-chart-line"></i>
             </div>
-            <h3>Market Prices</h3>
-            <p>Track current market prices for various crops and plan an effective selling strategy.</p>
-            <div class="feature-actions">
-                <select id="marketCrop" class="crop-select">
-                    <option value="wheat">Wheat</option>
-                    <option value="rice">Rice</option>
-                    <option value="onion">Onion</option>
-                    <option value="potato">Potato</option>
-                </select>
-                <input type="text" id="locationInput" class="location-input" placeholder="Enter location" />
-                <button class="feature-btn" id="marketBtn">
-                    <i class="fas fa-rupee-sign"></i>
-                    <span class="btn-text">Check Prices</span>
-                </button>
+            <h2>Live Crop Market Prices</h2>
+            <p class="market-subtitle">
+                Track current market prices for various crops and plan an effective selling strategy.
+                Get real-time pricing data to maximize your profits and make informed decisions.
+            </p>
+            <p class="market-features">
+                ✓ Real-time market prices &nbsp;&nbsp;
+                ✓ Multiple crop types &nbsp;&nbsp;
+                ✓ Location-based pricing
+            </p>
+        </div>
+
+        <div class="market-input-section">
+            <div class="market-form-grid">
+                <div class="input-wrapper">
+                    <i class="fas fa-seedling input-icon"></i>
+                    <select id="marketCrop" class="market-select-large">
+                        <option value="">Select Crop</option>
+                        <option value="wheat">Wheat</option>
+                        <option value="rice">Rice</option>
+                        <option value="onion">Onion</option>
+                        <option value="potato">Potato</option>
+                        <option value="tomato">Tomato</option>
+                        <option value="cotton">Cotton</option>
+                        <option value="sugarcane">Sugarcane</option>
+                    </select>
+                </div>
+
+                <div class="input-wrapper">
+                    <i class="fas fa-map-marker-alt input-icon"></i>
+                    <input
+                            type="text"
+                            id="locationInput"
+                            placeholder="Enter location (e.g., Nagpur)"
+                            class="location-input-large"
+                    />
+                </div>
             </div>
 
-            <div id="marketResult" class="result-area"></div>
+            <button id="marketBtn" class="btn-primary btn-market-large">
+                <i class="fas fa-rupee-sign"></i>
+                <span class="btn-text">Check Prices</span>
+            </button>
+            <p class="input-hint">Select crop and enter location to get current market prices</p>
         </div>
+
+        <div id="marketResult" class="result-area"></div>
     </div>
 </section>
+
 <script type="module" src="/js/market.js"></script>
 <script type="module" src="/js/translation.js"></script>
 </body>

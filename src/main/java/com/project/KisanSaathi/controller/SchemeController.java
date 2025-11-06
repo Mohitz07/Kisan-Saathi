@@ -78,6 +78,26 @@ public class SchemeController {
         }
     }
 
+    // NEW: GET endpoint for fetching schemes by state
+    @GetMapping("/{state}")
+    public ResponseEntity<String> getSchemesByState(@PathVariable String state) {
+        try {
+            // Create a fetch request with default language
+            FetchRequest request = new FetchRequest();
+            request.state = state;
+            request.lang = "English"; // Default to English
+
+            // Reuse the existing fetchSchemes logic
+            return fetchSchemes(request);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("{\"error\": \"" + e.getMessage() + "\"}");
+        }
+    }
+
+    // Existing POST endpoint
     @PostMapping("/fetch")
     public ResponseEntity<String> fetchSchemes(@RequestBody FetchRequest request) {
         try {
@@ -134,14 +154,14 @@ public class SchemeController {
                         return ResponseEntity.ok(generatedText);
                     }
                 }
-                return ResponseEntity.ok("{}");
+                return ResponseEntity.ok("{\"schemes\": []}");
             } else {
                 return ResponseEntity.status(rawResponse.getStatusCode()).body(rawResponse.getBody());
             }
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error: " + e.getMessage());
+                    .body("{\"error\": \"" + e.getMessage() + "\"}");
         }
     }
 }

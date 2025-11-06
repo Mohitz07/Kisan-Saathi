@@ -1,92 +1,155 @@
-const indianStates = [
-    "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
-    "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir",
-    "Jharkhand", "Karnataka", "Kerala", "Ladakh", "Lakshadweep", "Madhya Pradesh",
-    "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha",
-    "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura",
-    "Uttar Pradesh", "Uttarakhand", "West Bengal"
+console.log('✅ schemesFetcher.js loaded');
+
+// State data
+const states = [
+    'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh',
+    'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand',
+    'Karnataka', 'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur',
+    'Meghalaya', 'Mizoram', 'Nagaland', 'Odisha', 'Punjab',
+    'Rajasthan', 'Sikkim', 'Tamil Nadu', 'Telangana', 'Tripura',
+    'Uttar Pradesh', 'Uttarakhand', 'West Bengal'
 ];
 
-// Populate state dropdown
-function populateStates() {
-    const stateSelect = document.getElementById("stateSelect");
-    indianStates.forEach(state => {
-        const option = document.createElement("option");
-        option.value = state;
-        option.textContent = state;
-        stateSelect.appendChild(option);
-    });
-}
+function initSchemesFetcher() {
+    console.log('🚀 Initializing schemes fetcher...');
 
-// Filter states in dropdown
-function filterStates() {
-    const searchInput = document.getElementById("stateSearch").value.toLowerCase();
-    const stateSelect = document.getElementById("stateSelect");
-    stateSelect.innerHTML = '<option value="">Select State</option>';
+    const stateSelect = document.getElementById('stateSelect');
+    const stateSearch = document.getElementById('stateSearch');
+    const fetchBtn = document.getElementById('fetchSchemesBtn');
+    const schemesBox = document.getElementById('schemesBox');
+    const schemesContainer = document.getElementById('schemesContainer');
 
-    const filteredStates = indianStates.filter(state => state.toLowerCase().includes(searchInput));
-    filteredStates.forEach(state => {
-        const option = document.createElement("option");
-        option.value = state;
-        option.textContent = state;
-        stateSelect.appendChild(option);
-    });
-}
-
-// Fetch schemes from backend
-async function fetchSchemes(state) {
-    const lang = document.getElementById("languageSelect").value; // Add language
-    try {
-        const response = await fetch('/api/schemes/fetch', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ state: state, lang: lang }) // Pass language
-        });
-        const data = await response.json();
-        return data.schemes || [];
-    } catch (e) {
-        console.error('Error fetching schemes:', e);
-        return [];
+    if (!stateSelect || !stateSearch || !fetchBtn || !schemesContainer) {
+        console.error('❌ Required elements not found');
+        return;
     }
-}
 
-// Display schemes
-function displaySchemes(schemes, state) {
-    const schemesBox = document.getElementById("schemesBox");
-    const schemesContainer = document.getElementById("schemesContainer");
-    const selectedState = document.getElementById("selectedState");
-    selectedState.textContent = state;
+    console.log('✅ All elements found');
 
-    schemesBox.style.display = "block";
-    if (schemes.length > 0) {
-        schemesContainer.innerHTML = "";
-        schemes.forEach(scheme => {
-            const card = document.createElement("div");
-            card.className = "scheme-card";
-            card.innerHTML = `
-                <h3>${scheme.title}</h3>
-                <p>${scheme.description}</p>
-                <a href="${scheme.link}" target="_blank">Learn More</a>
+    // Populate state dropdown
+    states.forEach(state => {
+        const option = document.createElement('option');
+        option.value = state;
+        option.textContent = state;
+        stateSelect.appendChild(option);
+    });
+
+    // Search functionality
+    stateSearch.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        const options = stateSelect.querySelectorAll('option');
+
+        options.forEach(option => {
+            if (option.value === '') return;
+            const stateName = option.value.toLowerCase();
+            option.style.display = stateName.includes(searchTerm) ? 'block' : 'none';
+        });
+    });
+
+    // Fetch schemes button
+    fetchBtn.addEventListener('click', async () => {
+        const selectedState = stateSelect.value;
+
+        if (!selectedState) {
+            schemesContainer.innerHTML = `
+                <div class="schemes-empty">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>Please select a state to view schemes</p>
+                </div>
             `;
-            schemesContainer.appendChild(card);
-        });
-    } else {
-        schemesContainer.innerHTML = '<p>No schemes found for this state.</p>';
-    }
-}
-
-// Event listeners
-document.addEventListener("DOMContentLoaded", () => {
-    populateStates();
-    document.getElementById("stateSearch").addEventListener("input", filterStates);
-    document.getElementById("fetchSchemesBtn").addEventListener("click", async () => {
-        const state = document.getElementById("stateSelect").value;
-        if (!state) {
-            alert("Please select a state");
             return;
         }
-        const schemes = await fetchSchemes(state);
-        displaySchemes(schemes, state);
-    });
-});
 
+        console.log('Fetching schemes for:', selectedState);
+
+        // Show loading
+        schemesContainer.innerHTML = `
+            <div class="loading">
+                <div class="loader"></div>
+                <p>Loading schemes for ${selectedState}...</p>
+            </div>
+        `;
+
+        try {
+            const response = await fetch(`/api/schemes/${encodeURIComponent(selectedState)}`);
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const schemes = await response.json();
+            displaySchemes(schemes, selectedState);
+
+        } catch (error) {
+            console.error('Error fetching schemes:', error);
+            schemesContainer.innerHTML = `
+                <div class="error">
+                    <i class="fas fa-times-circle"></i>
+                    <p>Failed to load schemes</p>
+                    <p class="error-details">${error.message}</p>
+                </div>
+            `;
+        }
+    });
+}
+
+function displaySchemes(data, stateName) {
+    const schemesContainer = document.getElementById('schemesContainer');
+
+    // Parse if data is string
+    if (typeof data === 'string') {
+        data = JSON.parse(data);
+    }
+
+    const schemes = data.schemes || [];
+
+    if (!schemes || schemes.length === 0) {
+        schemesContainer.innerHTML = `
+            <div class="schemes-empty">
+                <i class="fas fa-inbox"></i>
+                <p>No schemes found for ${stateName}</p>
+            </div>
+        `;
+        return;
+    }
+
+    let html = `
+        <div class="schemes-result-header">
+            <h3>Available Schemes for ${stateName}</h3>
+            <p>Found ${schemes.length} scheme(s)</p>
+        </div>
+    `;
+
+    schemes.forEach(scheme => {
+        html += `
+            <div class="scheme-card">
+                <h4>${scheme.title || 'Untitled Scheme'}</h4>
+                <p>${scheme.description || 'No description available'}</p>
+
+                ${scheme.link ? `
+                    <div class="scheme-link">
+                        <a href="${scheme.link}" target="_blank" rel="noopener noreferrer" class="scheme-btn">
+                            <i class="fas fa-external-link-alt"></i> Learn More
+                        </a>
+                    </div>
+                ` : ''}
+
+                <div class="scheme-meta">
+                    <span class="scheme-tag">Government Scheme</span>
+                </div>
+            </div>
+        `;
+    });
+
+    schemesContainer.innerHTML = html;
+}
+
+
+// Auto-initialize
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSchemesFetcher);
+} else {
+    initSchemesFetcher();
+}
+
+export { initSchemesFetcher };

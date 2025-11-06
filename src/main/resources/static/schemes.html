@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Schemes</title>
+    <title>Government Schemes</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 </head>
@@ -15,13 +15,13 @@
             <span class="logo-text">Kisan-Sathi</span>
         </div>
         <nav class="nav-menu">
-            <a href="index.html" class="nav-item">Dashboard</a>
-            <a href="weather.html" class="nav-item">Weather</a>
-            <a href="disease.html" class="nav-item">Disease Detection</a>
-            <a href="soil-monitor.html" class="nav-item">Soil Monitor</a>
-            <a href="market.html" class="nav-item">Market Prices</a>
-            <a href="schemes.html" class="nav-item active">Schemes Fetcher</a>
-            <a href="advisory.html" class="nav-item">AI Agro Advisory</a>
+            <a href="index.html" class="nav-item"><span class="nav-text">Dashboard</span></a>
+            <a href="weather.html" class="nav-item"><span class="nav-text">Weather</span></a>
+            <a href="disease.html" class="nav-item"><span class="nav-text">Disease Detection</span></a>
+            <a href="soil-monitor.html" class="nav-item"><span class="nav-text">Soil Monitor</span></a>
+            <a href="market.html" class="nav-item"><span class="nav-text">Market Prices</span></a>
+            <a href="schemes.html" class="nav-item active"><span class="nav-text">Schemes Fetcher</span></a>
+            <a href="advisory.html" class="nav-item"><span class="nav-text">AI Agro Advisory</span></a>
         </nav>
         <div class="header-right">
             <div class="language-selector">
@@ -36,21 +36,50 @@
     </div>
 </header>
 
-<section class="scheme-section" id="schemes">
+<section class="schemes-section">
     <div class="container">
-        <br>
-        <br>
-        <h2 class="section-title">Available Schemes</h2>
-        <div class="state-selector">
-            <label for="stateSearch">Select or Search State:</label>
-            <input type="text" id="stateSearch" placeholder="Search for a state..." class="search-input">
-            <select id="stateSelect" class="state-dropdown">
-                <option value="">Select State</option>
-            </select>
-            <button id="fetchSchemesBtn" class="btn-primary">Fetch Schemes</button>
+        <div class="schemes-header-content">
+            <div class="schemes-icon-wrapper">
+                <i class="fas fa-file-alt"></i>
+            </div>
+            <h2>📋 Government Schemes & Benefits</h2>
+            <p class="schemes-subtitle">
+                Discover government schemes and subsidies available for farmers in your state.
+                Access detailed information about eligibility, benefits, and application procedures.
+            </p>
+            <p class="schemes-features">
+                ✓ State-specific schemes &nbsp;&nbsp;
+                ✓ Central government programs &nbsp;&nbsp;
+                ✓ Eligibility & benefits
+            </p>
         </div>
-        <div id="schemesBox" class="schemes-box">
-            <h3>Schemes for <span id="selectedState"></span></h3>
+
+        <div class="schemes-input-section">
+            <div class="input-wrapper">
+                <i class="fas fa-search input-icon"></i>
+                <input
+                        type="text"
+                        id="stateSearch"
+                        placeholder="Search for a state..."
+                        class="search-input-large"
+                />
+            </div>
+
+            <div class="input-wrapper">
+                <i class="fas fa-map-marker-alt input-icon"></i>
+                <select id="stateSelect" class="state-select-large">
+                    <option value="">Select State</option>
+                </select>
+            </div>
+
+            <button id="fetchSchemesBtn" class="btn-primary btn-schemes-large">
+                <i class="fas fa-download"></i>
+                <span class="btn-text">Fetch Schemes</span>
+            </button>
+            <p class="input-hint">Select your state to view available government schemes</p>
+        </div>
+
+        <div id="schemesBox" class="schemes-result-area">
             <div id="schemesContainer"></div>
         </div>
     </div>

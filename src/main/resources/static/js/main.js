@@ -4,6 +4,10 @@ import { getDatabase } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-
 
 import { initWeather } from './weather.js';
 import { initDisease } from './disease.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+    initDisease();
+});
 import { initSoil } from './soil.js';
 import { initNav } from './nav.js';
 

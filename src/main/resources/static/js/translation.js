@@ -9,10 +9,56 @@ class LanguageManager {
                     soil: 'Soil Monitor',
                     market: 'Market Prices',
                     schemes: 'Schemes Fetcher',
-                    advisory: 'AI Agro Advisory',
-                    analytics: 'Analytics',
-                    more: 'More',
-                    settings: 'Settings'
+                    advisory: 'AI Agro Advisor'
+                },
+                // Dashboard Sections
+                howItWorks: {
+                    title: 'How Kisan-Sathi Works',
+                    subtitle: 'Comprehensive agricultural solutions powered by cutting-edge AI technology',
+                    weatherCard: {
+                        title: 'Weather Forecast',
+                        desc: 'Get real-time and predictive weather conditions for your region to plan sowing, harvesting, and irrigation activities.'
+                    },
+                    diseaseCard: {
+                        title: 'Disease Detection',
+                        desc: 'Quickly identify crop diseases using AI image analysis and get expert recommendations for treatment.'
+                    },
+                    soilCard: {
+                        title: 'Soil Monitor',
+                        desc: 'Track soil health, nutrient levels, and moisture in real-time for optimal crop growth.'
+                    },
+                    marketCard: {
+                        title: 'Market Prices',
+                        desc: 'Access up-to-date local and national market prices for crops to make informed selling decisions.'
+                    },
+                    schemesCard: {
+                        title: 'Schemes Fetcher',
+                        desc: 'Stay updated on government agricultural schemes, subsidies, and incentives relevant to your region and crop type.'
+                    },
+                    advisoryCard: {
+                        title: 'AI Agro Advisor',
+                        desc: 'Chat with our AI-powered advisor for personalized crop management tips, fertilization schedules, and pest control advice.'
+                    }
+                },
+                whyChoose: {
+                    title: 'Why Choose Kisan-Sathi?',
+                    subtitle: 'Empowering farmers with technology for better yields and sustainable farming',
+                    aiCard: {
+                        title: 'AI-Powered Intelligence',
+                        desc: 'Make data-driven decisions that increase productivity and reduce waste.'
+                    },
+                    multilingualCard: {
+                        title: 'Multilingual Support',
+                        desc: 'Access all features in English, Hindi, and Marathi.'
+                    },
+                    easyCard: {
+                        title: 'Easy to Use',
+                        desc: 'Simple, intuitive interface for farmers of all tech levels.'
+                    }
+                },
+                readyToTransform: {
+                    title: 'Ready to Transform Your Farming?',
+                    subtitle: 'Join thousands of farmers already using Kisan-Sathi today!'
                 },
                 image: {
                     upload: 'Upload Image',
@@ -59,6 +105,39 @@ class LanguageManager {
                     potassium: 'Potassium (K)',
                     loading: 'Loading...',
                     advice: 'Your soil advice will appear here.'
+                },
+                weather: {
+                    title: '🌤️ Real-Time Weather Forecast',
+                    subtitle: 'Get accurate weather updates and 7-day forecasts to make informed farming decisions. Plan your planting, irrigation, and harvesting with real-time meteorological data.',
+                    features: '✓ Real-time weather data  ✓ 7-day forecast  ✓ Temperature, humidity & wind speed',
+                    placeholder: 'Enter your location (e.g., Mumbai, Maharashtra)',
+                    button: 'Get Weather',
+                    hint: 'Enter city name or your current location'
+                },
+                disease: {
+                    title: '🔬 AI-Powered Crop Disease Detection',
+                    subtitle: 'Upload a clear image of your crop leaf or plant to instantly detect diseases, pests, and health issues. Our advanced AI analyzes your image and provides treatment recommendations.',
+                    features: '✓ Detects 288+ diseases across 23 major crops  ✓ Instant AI-powered analysis  ✓ Treatment recommendations',
+                    button: 'Upload Crop Image',
+                    hint: 'Supported formats: JPG, PNG, HEIC • Max size: 10 MB'
+                },
+                market: {
+                    title: '📈 Live Crop Market Prices',
+                    subtitle: 'Track current market prices for various crops and plan an effective selling strategy. Get real-time pricing data to maximize your profits and make informed decisions.',
+                    features: '✓ Real-time market prices  ✓ Multiple crop types  ✓ Location-based pricing',
+                    cropPlaceholder: 'Select Crop',
+                    locationPlaceholder: 'Enter location (e.g., Nagpur)',
+                    button: 'Check Prices',
+                    hint: 'Select crop and enter location to get current market prices'
+                },
+                schemes: {
+                    title: '📋 Government Schemes & Benefits',
+                    subtitle: 'Discover government schemes and subsidies available for farmers in your state. Access detailed information about eligibility, benefits, and application procedures.',
+                    features: '✓ State-specific schemes  ✓ Central government programs  ✓ Eligibility & benefits',
+                    searchPlaceholder: 'Search for a state...',
+                    selectPlaceholder: 'Select State',
+                    button: 'Fetch Schemes',
+                    hint: 'Select your state to view available government schemes'
                 }
             },
             hi: {
@@ -69,10 +148,55 @@ class LanguageManager {
                     soil: 'मिट्टी निगरानी',
                     market: 'बाजार की कीमतें',
                     schemes: 'योजना खोजना',
-                    advisory: 'एआई कृषि सलाह',
-                    analytics: 'विश्लेषण',
-                    more: 'अधिक',
-                    settings: 'सेटिंग्स'
+                    advisory: 'एआई कृषि सलाह'
+                },
+                howItWorks: {
+                    title: 'किसान-साथी कैसे काम करता है',
+                    subtitle: 'अत्याधुनिक एआई प्रौद्योगिकी द्वारा संचालित व्यापक कृषि समाधान',
+                    weatherCard: {
+                        title: 'मौसम पूर्वानुमान',
+                        desc: 'अपने क्षेत्र के लिए वास्तविक समय और पूर्वानुमानित मौसम की स्थिति प्राप्त करें ताकि बुआई, कटाई और सिंचाई गतिविधियों की योजना बनाई जा सके।'
+                    },
+                    diseaseCard: {
+                        title: 'रोग का पता लगाना',
+                        desc: 'एआई छवि विश्लेषण का उपयोग करके फसल रोगों को तुरंत पहचानें और उपचार के लिए विशेषज्ञ सिफारिशें प्राप्त करें।'
+                    },
+                    soilCard: {
+                        title: 'मिट्टी निगरानी',
+                        desc: 'इष्टतम फसल वृद्धि के लिए वास्तविक समय में मिट्टी के स्वास्थ्य, पोषक तत्व स्तर और नमी को ट्रैक करें।'
+                    },
+                    marketCard: {
+                        title: 'बाजार की कीमतें',
+                        desc: 'सूचित बिक्री निर्णय लेने के लिए फसलों के लिए अद्यतन स्थानीय और राष्ट्रीय बाजार मूल्य प्राप्त करें।'
+                    },
+                    schemesCard: {
+                        title: 'योजना खोजना',
+                        desc: 'अपने क्षेत्र और फसल प्रकार के लिए प्रासंगिक सरकारी कृषि योजनाओं, सब्सिडी और प्रोत्साहनों पर अपडेट रहें।'
+                    },
+                    advisoryCard: {
+                        title: 'एआई कृषि सलाहकार',
+                        desc: 'व्यक्तिगत फसल प्रबंधन युक्तियों, उर्वरक कार्यक्रम और कीट नियंत्रण सलाह के लिए हमारे एआई-संचालित सलाहकार से चैट करें।'
+                    }
+                },
+                whyChoose: {
+                    title: 'किसान-साथी क्यों चुनें?',
+                    subtitle: 'बेहतर उपज और स्थायी खेती के लिए प्रौद्योगिकी के साथ किसानों को सशक्त बनाना',
+                    aiCard: {
+                        title: 'एआई-संचालित बुद्धिमत्ता',
+                        desc: 'डेटा-संचालित निर्णय लें जो उत्पादकता बढ़ाते हैं और अपशिष्ट कम करते हैं।'
+                    },
+                    multilingualCard: {
+                        title: 'बहुभाषी समर्थन',
+                        desc: 'अंग्रेजी, हिंदी और मराठी में सभी सुविधाओं तक पहुंच प्राप्त करें।'
+                    },
+                    easyCard: {
+                        title: 'उपयोग में आसान',
+                        desc: 'सभी तकनीकी स्तरों के किसानों के लिए सरल, सहज इंटरफ़ेस।'
+                    }
+                },
+                readyToTransform: {
+                    title: 'अपनी खेती को रूपांतरित करने के लिए तैयार हैं?',
+                    subtitle: 'हजारों किसान पहले से ही किसान-साथी का उपयोग कर रहे हैं!'
                 },
                 image: {
                     upload: 'छवि अपलोड करें',
@@ -119,6 +243,39 @@ class LanguageManager {
                     potassium: 'पोटैशियम (के)',
                     loading: 'लोड हो रहा है...',
                     advice: 'आपकी मिट्टी सलाह यहां दिखाई देगी।'
+                },
+                weather: {
+                    title: '🌤️ रीयल-टाइम मौसम पूर्वानुमान',
+                    subtitle: 'सूचित खेती के निर्णय लेने के लिए सटीक मौसम अपडेट और 7-दिवसीय पूर्वानुमान प्राप्त करें। रीयल-टाइम मौसम विज्ञान डेटा के साथ अपनी रोपाई, सिंचाई और कटाई की योजना बनाएं।',
+                    features: '✓ रीयल-टाइम मौसम डेटा  ✓ 7-दिवसीय पूर्वानुमान  ✓ तापमान, आर्द्रता और हवा की गति',
+                    placeholder: 'अपना स्थान दर्ज करें (उदा. मुंबई, महाराष्ट्र)',
+                    button: 'मौसम प्राप्त करें',
+                    hint: 'शहर का नाम या अपना वर्तमान स्थान दर्ज करें'
+                },
+                disease: {
+                    title: '🔬 एआई-संचालित फसल रोग निदान',
+                    subtitle: 'तुरंत रोगों, कीटों और स्वास्थ्य समस्याओं का पता लगाने के लिए अपने फसल पत्ते या पौधे की स्पष्ट छवि अपलोड करें। हमारी उन्नत एआई आपकी छवि का विश्लेषण करती है और उपचार सिफारिशें प्रदान करती है।',
+                    features: '✓ 23 प्रमुख फसलों में 288+ रोगों का पता लगाता है  ✓ तत्काल एआई-संचालित विश्लेषण  ✓ उपचार सिफारिशें',
+                    button: 'छवि अपलोड करें',
+                    hint: 'समर्थित प्रारूप: JPG, PNG, HEIC • अधिकतम आकार: 10 एमबी'
+                },
+                market: {
+                    title: '📈 लाइव फसल बाजार मूल्य',
+                    subtitle: 'विभिन्न फसलों के लिए वर्तमान बाजार मूल्य ट्रैक करें और एक प्रभावी बिक्री रणनीति की योजना बनाएं। अपने लाभ को अधिकतम करने और सूचित निर्णय लेने के लिए रीयल-टाइम मूल्य निर्धारण डेटा प्राप्त करें।',
+                    features: '✓ रीयल-टाइम बाजार मूल्य  ✓ कई फसल प्रकार  ✓ स्थान-आधारित मूल्य निर्धारण',
+                    cropPlaceholder: 'फसल चुनें',
+                    locationPlaceholder: 'स्थान दर्ज करें (उदा. नागपुर)',
+                    button: 'कीमतें देखें',
+                    hint: 'वर्तमान बाजार मूल्य प्राप्त करने के लिए फसल चुनें और स्थान दर्ज करें'
+                },
+                schemes: {
+                    title: '📋 सरकारी योजनाएं और लाभ',
+                    subtitle: 'अपने राज्य में किसानों के लिए उपलब्ध सरकारी योजनाओं और सब्सिडी खोजें। पात्रता, लाभ और आवेदन प्रक्रियाओं के बारे में विस्तृत जानकारी प्राप्त करें।',
+                    features: '✓ राज्य-विशिष्ट योजनाएं  ✓ केंद्र सरकार के कार्यक्रम  ✓ पात्रता और लाभ',
+                    searchPlaceholder: 'राज्य खोजें...',
+                    selectPlaceholder: 'राज्य चुनें',
+                    button: 'योजनाएं प्राप्त करें',
+                    hint: 'उपलब्ध सरकारी योजनाओं को देखने के लिए अपना राज्य चुनें'
                 }
             },
             mr: {
@@ -129,10 +286,55 @@ class LanguageManager {
                     soil: 'मृदा निरीक्षण',
                     market: 'बाजार भाव',
                     schemes: 'योजना शोधा',
-                    advisory: 'एआय कृषी सल्लागार',
-                    analytics: 'विश्लेषण',
-                    more: 'अधिक',
-                    settings: 'सेटिंग्स'
+                    advisory: 'एआय कृषी सल्लागार'
+                },
+                howItWorks: {
+                    title: 'किसान-साथी कसे कार्य करते',
+                    subtitle: 'अत्याधुनिक एआय तंत्रज्ञानाद्वारे संचालित सर्वसमावेशक कृषी उपाय',
+                    weatherCard: {
+                        title: 'हवामान अंदाज',
+                        desc: 'तुमच्या प्रदेशासाठी वास्तविक वेळ आणि अंदाज हवामान परिस्थिती मिळवा, पेरणी, कापणी आणि सिंचन क्रियाकलापांची योजना करण्यासाठी।'
+                    },
+                    diseaseCard: {
+                        title: 'आजार निदान',
+                        desc: 'एआय प्रतिमा विश्लेषण वापरून पीक रोग त्वरित ओळखा आणि उपचारांसाठी तज्ञ शिफारसी मिळवा।'
+                    },
+                    soilCard: {
+                        title: 'मृदा निरीक्षण',
+                        desc: 'इष्टतम पीक वाढीसाठी वास्तविक वेळेत मृदा आरोग्य, पोषक तत्त्वे आणि ओलावा ट्रॅक करा।'
+                    },
+                    marketCard: {
+                        title: 'बाजार भाव',
+                        desc: 'माहितीपूर्ण विक्री निर्णय घेण्यासाठी पिकांसाठी अद्ययावत स्थानिक आणि राष्ट्रीय बाजार भाव मिळवा।'
+                    },
+                    schemesCard: {
+                        title: 'योजना शोधा',
+                        desc: 'तुमच्या प्रदेश आणि पीक प्रकारासाठी प्रासंगिक सरकारी कृषी योजना, अनुदाने आणि प्रोत्साहनांवर अद्ययावत रहा।'
+                    },
+                    advisoryCard: {
+                        title: 'एआय कृषी सल्लागार',
+                        desc: 'वैयक्तिकृत पीक व्यवस्थापन टिपा, खत वेळापत्रक आणि कीटक नियंत्रण सल्ला साठी आमच्या एआय-संचालित सल्लागाराशी चॅट करा।'
+                    }
+                },
+                whyChoose: {
+                    title: 'किसान-साथी का निवडावे?',
+                    subtitle: 'चांगल्या उत्पन्नासाठी आणि शाश्वत शेतीसाठी तंत्रज्ञानासह शेतकऱ्यांना सक्षम करणे',
+                    aiCard: {
+                        title: 'एआय-संचालित बुद्धिमत्ता',
+                        desc: 'डेटा-चालित निर्णय घ्या जे उत्पादकता वाढवतात आणि कचरा कमी करतात।'
+                    },
+                    multilingualCard: {
+                        title: 'बहुभाषिक समर्थन',
+                        desc: 'इंग्रजी, हिंदी आणि मराठीमध्ये सर्व वैशिष्ट्यांमध्ये प्रवेश मिळवा।'
+                    },
+                    easyCard: {
+                        title: 'वापरण्यास सोपे',
+                        desc: 'सर्व तंत्रज्ञान पातळीच्या शेतकऱ्यांसाठी सोपा, सहज इंटरफेस।'
+                    }
+                },
+                readyToTransform: {
+                    title: 'तुमची शेती बदलण्यासाठी तयार आहात?',
+                    subtitle: 'आधीपासूनच हजारो शेतकरी किसान-साथी वापरत आहेत!'
                 },
                 image: {
                     upload: 'छायाचित्र अपलोड करा',
@@ -179,6 +381,39 @@ class LanguageManager {
                     potassium: 'पोटॅशियम (के)',
                     loading: 'लोड होत आहे...',
                     advice: 'तुमच्या मातीची सूचना इथे दिसेल.'
+                },
+                weather: {
+                    title: '🌤️ रिअल-टाइम हवामान अंदाज',
+                    subtitle: 'माहितीपूर्वक शेतीच्या निर्णयांसाठी अचूक हवामान अद्यतने आणि 7-दिवसांचे अंदाज मिळवा. रिअल-टाइम हवामान डेटासह तुमची लागवड, सिंचन आणि कापणीची योजना करा.',
+                    features: '✓ रिअल-टाइम हवामान डेटा  ✓ 7-दिवसांचा अंदाज  ✓ तापमान, आर्द्रता आणि वारा वेग',
+                    placeholder: 'तुमचे स्थान टाका (उदा. मुंबई, महाराष्ट्र)',
+                    button: 'हवामान मिळवा',
+                    hint: 'शहराचे नाव किंवा तुमचे सध्याचे स्थान प्रविष्ट करा'
+                },
+                disease: {
+                    title: '🔬 एआय-संचालित पीक रोग निदान',
+                    subtitle: 'त्वरित रोग, किडे आणि आरोग्य समस्या शोधण्यासाठी तुमच्या पिकाच्या पानाची किंवा वनस्पतीची स्पष्ट प्रतिमा अपलोड करा. आमची प्रगत एआय तुमच्या प्रतिमेचे विश्लेषण करते आणि उपचार शिफारसी प्रदान करते.',
+                    features: '✓ 23 प्रमुख पिकांमध्ये 288+ रोग शोधते  ✓ त्वरित एआय-संचालित विश्लेषण  ✓ उपचार शिफारसी',
+                    button: 'प्रतिमा अपलोड करा',
+                    hint: 'समर्थित स्वरूप: JPG, PNG, HEIC • कमाल आकार: 10 MB'
+                },
+                market: {
+                    title: '📈 थेट पीक बाजार भाव',
+                    subtitle: 'विविध पिकांसाठी चालू बाजार भाव ट्रॅक करा आणि प्रभावी विक्री रणनीती आखा. तुमचा नफा वाढविण्यासाठी आणि माहितीपूर्ण निर्णय घेण्यासाठी रिअल-टाइम किंमत डेटा मिळवा.',
+                    features: '✓ रिअल-टाइम बाजार भाव  ✓ अनेक पीक प्रकार  ✓ स्थान-आधारित किंमत',
+                    cropPlaceholder: 'पीक निवडा',
+                    locationPlaceholder: 'स्थान द्या (उदा. नागपूर)',
+                    button: 'भाव पहा',
+                    hint: 'सध्याचे बाजार भाव मिळविण्यासाठी पीक निवडा आणि स्थान द्या'
+                },
+                schemes: {
+                    title: '📋 सरकारी योजना आणि फायदे',
+                    subtitle: 'तुमच्या राज्यातील शेतकऱ्यांसाठी उपलब्ध सरकारी योजना आणि अनुदाने शोधा. पात्रता, फायदे आणि अर्ज प्रक्रियेबद्दल तपशीलवार माहिती मिळवा.',
+                    features: '✓ राज्य-विशिष्ट योजना  ✓ केंद्र सरकारचे कार्यक्रम  ✓ पात्रता आणि फायदे',
+                    searchPlaceholder: 'राज्य शोधा...',
+                    selectPlaceholder: 'राज्य निवडा',
+                    button: 'योजना मिळवा',
+                    hint: 'उपलब्ध सरकारी योजना पाहण्यासाठी तुमचे राज्य निवडा'
                 }
             }
         };
@@ -187,30 +422,8 @@ class LanguageManager {
     }
 
     init() {
-        this.wrapButtonText();
         this.updateLanguage(this.currentLanguage);
         this.setupLanguageSelector();
-    }
-
-    wrapButtonText() {
-        const buttons = document.querySelectorAll('button, .nav-item, .feature-btn');
-        buttons.forEach(btn => {
-            const text = btn.textContent.trim();
-            if (text && !btn.querySelector('.btn-text') && !btn.querySelector('.nav-text')) {
-                if (btn.classList.contains('nav-item')) {
-                    btn.innerHTML = `<span class="nav-text">${text}</span>`;
-                } else {
-                    btn.innerHTML = `<span class="btn-text">${text}</span>`;
-                }
-            }
-        });
-
-        document.querySelectorAll('.feature-card h3, .feature-card p, #imageAnalysisResult h3').forEach(el => {
-            const text = el.textContent.trim();
-            if (text && !el.querySelector('.card-text')) {
-                el.innerHTML = `<span class="card-text">${text}</span>`;
-            }
-        });
     }
 
     setupLanguageSelector() {
@@ -227,52 +440,194 @@ class LanguageManager {
         this.currentLanguage = lang;
         this.updateLanguage(lang);
         localStorage.setItem('preferredLanguage', lang);
+
+        // Trigger custom event for other scripts to listen
+        window.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: lang } }));
     }
 
     updateLanguage(lang) {
         const t = this.translations[lang];
         document.documentElement.setAttribute('lang', lang);
 
-        // Update nav bar
-        this.updateText('[href="index.html"] .nav-text', t.nav.dashboard);
-        this.updateText('[href="weather.html"] .nav-text', t.nav.weather);
-        this.updateText('[href="disease.html"] .nav-text', t.nav.disease);
-        this.updateText('[href="soil-monitor.html"] .nav-text', t.nav.soil);
-        this.updateText('[href="market.html"] .nav-text', t.nav.market);
-        this.updateText('[href="schemes.html"] .nav-text', t.nav.schemes);
-        this.updateText('[href="advisory.html"] .nav-text', t.nav.advisory);
+        console.log('🌍 Updating language to:', lang);
 
-        // Update image
+        // ===== NAV BAR (ALWAYS UPDATE - PRESENT ON ALL PAGES) =====
+        // Try multiple ways to select nav items
+        const navItems = {
+            dashboard: document.querySelector('a[href="index.html"]'),
+            weather: document.querySelector('a[href="weather.html"]'),
+            disease: document.querySelector('a[href="disease.html"]'),
+            soil: document.querySelector('a[href="soil-monitor.html"]'),
+            market: document.querySelector('a[href="market.html"]'),
+            schemes: document.querySelector('a[href="schemes.html"]'),
+            advisory: document.querySelector('a[href="advisory.html"]')
+        };
+
+        Object.keys(navItems).forEach(key => {
+            const item = navItems[key];
+            if (item) {
+                const navText = item.querySelector('.nav-text');
+                if (navText) {
+                    navText.textContent = t.nav[key];
+                } else {
+                    item.textContent = t.nav[key];
+                }
+            }
+        });
+
+        // ===== DASHBOARD: HOW IT WORKS SECTION =====
+        // Look for section containing "How" or "Works" in heading
+        const howSection = Array.from(document.querySelectorAll('h2')).find(h2 =>
+            h2.textContent.includes('How') ||
+            h2.textContent.includes('Kisan-Sathi Works') ||
+            h2.textContent.includes('किसान-साथी कैसे') ||
+            h2.textContent.includes('किसान-साथी कसे')
+        );
+
+        if (howSection) {
+            console.log('✅ Found How It Works section');
+            howSection.textContent = t.howItWorks.title;
+
+            // Update subtitle (next p tag after h2)
+            const subtitle = howSection.nextElementSibling;
+            if (subtitle && subtitle.tagName === 'P') {
+                subtitle.textContent = t.howItWorks.subtitle;
+            }
+
+            // Find all info cards in this section
+            const section = howSection.closest('section') || howSection.parentElement;
+            const cards = section.querySelectorAll('.info-card, .card, [class*="card"]');
+
+            if (cards.length >= 6) {
+                // Weather card (1st)
+                const weatherH3 = cards[0].querySelector('h3');
+                const weatherP = cards[0].querySelector('p');
+                if (weatherH3) weatherH3.textContent = t.howItWorks.weatherCard.title;
+                if (weatherP) weatherP.textContent = t.howItWorks.weatherCard.desc;
+
+                // Disease card (2nd)
+                const diseaseH3 = cards[1].querySelector('h3');
+                const diseaseP = cards[1].querySelector('p');
+                if (diseaseH3) diseaseH3.textContent = t.howItWorks.diseaseCard.title;
+                if (diseaseP) diseaseP.textContent = t.howItWorks.diseaseCard.desc;
+
+                // Soil card (3rd)
+                const soilH3 = cards[2].querySelector('h3');
+                const soilP = cards[2].querySelector('p');
+                if (soilH3) soilH3.textContent = t.howItWorks.soilCard.title;
+                if (soilP) soilP.textContent = t.howItWorks.soilCard.desc;
+
+                // Market card (4th)
+                const marketH3 = cards[3].querySelector('h3');
+                const marketP = cards[3].querySelector('p');
+                if (marketH3) marketH3.textContent = t.howItWorks.marketCard.title;
+                if (marketP) marketP.textContent = t.howItWorks.marketCard.desc;
+
+                // Schemes card (5th)
+                const schemesH3 = cards[4].querySelector('h3');
+                const schemesP = cards[4].querySelector('p');
+                if (schemesH3) schemesH3.textContent = t.howItWorks.schemesCard.title;
+                if (schemesP) schemesP.textContent = t.howItWorks.schemesCard.desc;
+
+                // Advisory card (6th)
+                const advisoryH3 = cards[5].querySelector('h3');
+                const advisoryP = cards[5].querySelector('p');
+                if (advisoryH3) advisoryH3.textContent = t.howItWorks.advisoryCard.title;
+                if (advisoryP) advisoryP.textContent = t.howItWorks.advisoryCard.desc;
+            }
+        }
+
+        // ===== DASHBOARD: WHY CHOOSE SECTION =====
+        const whySection = Array.from(document.querySelectorAll('h2')).find(h2 =>
+            h2.textContent.includes('Why') ||
+            h2.textContent.includes('Choose') ||
+            h2.textContent.includes('किसान-साथी क्यों') ||
+            h2.textContent.includes('किसान-साथी का')
+        );
+
+        if (whySection) {
+            console.log('✅ Found Why Choose section');
+            whySection.textContent = t.whyChoose.title;
+
+            // Update subtitle
+            const subtitle = whySection.nextElementSibling;
+            if (subtitle && subtitle.tagName === 'P') {
+                subtitle.textContent = t.whyChoose.subtitle;
+            }
+
+            // Find benefit cards
+            const section = whySection.closest('section') || whySection.parentElement;
+            const benefitCards = section.querySelectorAll('.benefit-card, .card, [class*="card"]');
+
+            if (benefitCards.length >= 3) {
+                // AI card (1st)
+                const aiH3 = benefitCards[0].querySelector('h3');
+                const aiP = benefitCards[0].querySelector('p');
+                if (aiH3) aiH3.textContent = t.whyChoose.aiCard.title;
+                if (aiP) aiP.textContent = t.whyChoose.aiCard.desc;
+
+                // Multilingual card (2nd)
+                const multiH3 = benefitCards[1].querySelector('h3');
+                const multiP = benefitCards[1].querySelector('p');
+                if (multiH3) multiH3.textContent = t.whyChoose.multilingualCard.title;
+                if (multiP) multiP.textContent = t.whyChoose.multilingualCard.desc;
+
+                // Easy card (3rd)
+                const easyH3 = benefitCards[2].querySelector('h3');
+                const easyP = benefitCards[2].querySelector('p');
+                if (easyH3) easyH3.textContent = t.whyChoose.easyCard.title;
+                if (easyP) easyP.textContent = t.whyChoose.easyCard.desc;
+            }
+        }
+
+        // ===== DASHBOARD: READY TO TRANSFORM SECTION =====
+        const readySection = Array.from(document.querySelectorAll('h2')).find(h2 =>
+            h2.textContent.includes('Ready') ||
+            h2.textContent.includes('Transform') ||
+            h2.textContent.includes('तैयार') ||
+            h2.textContent.includes('रूपांतरित')
+        );
+
+        if (readySection) {
+            console.log('✅ Found Ready to Transform section');
+            readySection.textContent = t.readyToTransform.title;
+
+            const subtitle = readySection.nextElementSibling;
+            if (subtitle && subtitle.tagName === 'P') {
+                subtitle.textContent = t.readyToTransform.subtitle;
+            }
+        }
+
+        // ===== IMAGE ANALYSIS (if exists) =====
         this.updateText('#diseaseUploadBtn .btn-text', t.image.upload);
-        this.updateText('#imageAnalysisResult h3 .card-text', t.image.result);
+        this.updateText('#imageAnalysisResult h3', t.image.result);
 
-        // Update hero
+        // ===== HERO SECTION (if exists) =====
         this.updateText('.hero-content h1', t.hero.title);
         this.updateText('.hero-content p', t.hero.subtitle);
         this.updateText('#analyzeCropBtn .btn-text', t.hero.analyze);
         this.updateText('.btn-secondary .btn-text', t.hero.knowledge);
 
-        // Update features
-        this.updateText('#disease .feature-card h3 .card-text', t.features.disease.title);
-        this.updateText('#disease .feature-card p .card-text', t.features.disease.desc);
-        this.updateText('#diseaseUploadBtn .btn-text', t.features.disease.upload);
+        // ===== DASHBOARD FEATURE CARDS (if exist) =====
+        this.updateText('#disease .feature-card h3', t.features.disease.title);
+        this.updateText('#disease .feature-card p', t.features.disease.desc);
 
-        this.updateText('#weather .feature-card h3 .card-text', t.features.weather.title);
-        this.updateText('#weather .feature-card p .card-text', t.features.weather.desc);
+        this.updateText('#weather .feature-card h3', t.features.weather.title);
+        this.updateText('#weather .feature-card p', t.features.weather.desc);
         this.updateText('#weatherFetchBtn .btn-text', t.features.weather.get);
         this.updateElement('#locationInput', 'placeholder', t.features.weather.placeholder);
 
-        this.updateText('#advisory .feature-card h3 .card-text', t.features.advisory.title);
-        this.updateText('#advisory .feature-card p .card-text', t.features.advisory.desc);
+        this.updateText('#advisory .feature-card h3', t.features.advisory.title);
+        this.updateText('#advisory .feature-card p', t.features.advisory.desc);
         this.updateText('#advisoryBtn .btn-text', t.features.advisory.get);
         this.updateElement('#cropSelect option[value=""]', 'textContent', t.features.advisory.select);
 
-        this.updateText('#market .feature-card h3 .card-text', t.features.market.title);
-        this.updateText('#market .feature-card p .card-text', t.features.market.desc);
+        this.updateText('#market .feature-card h3', t.features.market.title);
+        this.updateText('#market .feature-card p', t.features.market.desc);
         this.updateText('#marketBtn .btn-text', t.features.market.check);
         this.updateElement('#marketCrop option[value=""]', 'textContent', t.features.market.select);
 
-        // Update soil
+        // ===== SOIL MONITORING (if exists) =====
         this.updateText('.soil-section .section-title', t.soil.title);
         this.updateText('#soilRefreshBtn .btn-text', t.soil.refresh);
         this.updateText('#voiceAssistBtn .btn-text', t.soil.voice);
@@ -280,19 +635,77 @@ class LanguageManager {
         this.updateText('.param-card:nth-child(2) h4', t.soil.phosphorous);
         this.updateText('.param-card:nth-child(3) h4', t.soil.potassium);
         document.querySelectorAll('.param-status').forEach(el => {
-            el.textContent = t.soil.loading;
+            if (el.textContent.trim() === 'Loading...' || el.textContent.trim().includes('लोड') || el.textContent.trim().includes('होत')) {
+                el.textContent = t.soil.loading;
+            }
         });
         this.updateElement('#soilAdviceResult', 'textContent', t.soil.advice);
+
+        // ===== WEATHER PAGE =====
+        if (document.querySelector('.weather-header-content')) {
+            this.updateText('.weather-header-content h2', t.weather.title);
+            this.updateText('.weather-subtitle', t.weather.subtitle);
+            this.updateText('.weather-features', t.weather.features);
+            this.updateElement('.weather-input-section #locationInput', 'placeholder', t.weather.placeholder);
+            this.updateText('#weatherFetchBtn .btn-text', t.weather.button);
+            this.updateText('.weather-input-section .input-hint', t.weather.hint);
+        }
+
+        // ===== DISEASE PAGE =====
+        if (document.querySelector('.disease-header-content')) {
+            this.updateText('.disease-header-content h2', t.disease.title);
+            this.updateText('.disease-subtitle', t.disease.subtitle);
+            this.updateText('.disease-features', t.disease.features);
+            this.updateText('.upload-section #diseaseUploadBtn .btn-text', t.disease.button);
+            this.updateText('.upload-section .input-hint', t.disease.hint);
+        }
+
+        // ===== MARKET PAGE =====
+        if (document.querySelector('.market-header-content')) {
+            this.updateText('.market-header-content h2', t.market.title);
+            this.updateText('.market-subtitle', t.market.subtitle);
+            this.updateText('.market-features', t.market.features);
+
+            const cropSelect = document.querySelector('#marketCrop');
+            if (cropSelect && cropSelect.options[0]) {
+                cropSelect.options[0].textContent = t.market.cropPlaceholder;
+            }
+
+            this.updateElement('.market-input-section #locationInput', 'placeholder', t.market.locationPlaceholder);
+            this.updateText('#marketBtn .btn-text', t.market.button);
+            this.updateText('.market-input-section .input-hint', t.market.hint);
+        }
+
+        // ===== SCHEMES PAGE =====
+        if (document.querySelector('.schemes-header-content')) {
+            this.updateText('.schemes-header-content h2', t.schemes.title);
+            this.updateText('.schemes-subtitle', t.schemes.subtitle);
+            this.updateText('.schemes-features', t.schemes.features);
+            this.updateElement('#stateSearch', 'placeholder', t.schemes.searchPlaceholder);
+
+            const stateSelect = document.querySelector('#stateSelect');
+            if (stateSelect && stateSelect.options[0]) {
+                stateSelect.options[0].textContent = t.schemes.selectPlaceholder;
+            }
+
+            this.updateText('#fetchSchemesBtn .btn-text', t.schemes.button);
+            this.updateText('.schemes-input-section .input-hint', t.schemes.hint);
+        }
+
+        console.log('✅ Language update complete');
     }
+
 
     updateText(selector, text) {
         const elements = document.querySelectorAll(selector);
         elements.forEach(el => {
-            if (el.querySelector('.btn-text') || el.querySelector('.nav-text') || el.querySelector('.card-text')) {
-                const span = el.querySelector('.btn-text') || el.querySelector('.nav-text') || el.querySelector('.card-text');
-                if (span) span.textContent = text;
-            } else {
-                el.textContent = text;
+            if (el) {
+                const textSpan = el.querySelector('.btn-text, .nav-text');
+                if (textSpan) {
+                    textSpan.textContent = text;
+                } else {
+                    el.textContent = text;
+                }
             }
         });
     }
@@ -305,7 +718,17 @@ class LanguageManager {
     }
 }
 
+// Auto-initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     window.languageManager = new LanguageManager();
     window.languageManager.init();
 });
+
+// Re-initialize on page navigation (for SPAs)
+window.addEventListener('load', () => {
+    if (window.languageManager) {
+        window.languageManager.updateLanguage(window.languageManager.currentLanguage);
+    }
+});
+
+export { LanguageManager };

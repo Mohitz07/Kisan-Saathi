@@ -15,13 +15,13 @@
             <span class="logo-text">Kisan-Sathi</span>
         </div>
         <nav class="nav-menu">
-            <a href="index.html" class="nav-item active">Dashboard</a>
-            <a href="weather.html" class="nav-item">Weather</a>
-            <a href="disease.html" class="nav-item">Disease Detection</a>
-            <a href="soil-monitor.html" class="nav-item">Soil Monitor</a>
-            <a href="market.html" class="nav-item">Market Prices</a>
-            <a href="schemes.html" class="nav-item">Schemes Fetcher</a>
-            <a href="advisory.html" class="nav-item">AI Agro Advisor</a>
+            <a href="index.html" class="nav-item"><span class="nav-text">Dashboard</span></a>
+            <a href="weather.html" class="nav-item active"><span class="nav-text">Weather</span></a>
+            <a href="disease.html" class="nav-item"><span class="nav-text">Disease Detection</span></a>
+            <a href="soil-monitor.html" class="nav-item"><span class="nav-text">Soil Monitor</span></a>
+            <a href="market.html" class="nav-item"><span class="nav-text">Market Prices</span></a>
+            <a href="schemes.html" class="nav-item"><span class="nav-text">Schemes Fetcher</span></a>
+            <a href="advisory.html" class="nav-item"><span class="nav-text">AI Agro Advisor</span></a>
         </nav>
         <div class="header-right">
             <div class="language-selector">
@@ -36,23 +36,41 @@
     </div>
 </header>
 
-<section class="features-section" id="weather">
-    <div class="features-container">
-        <div class="feature-card weather-card">
-            <div class="feature-icon">
+<section class="weather-section">
+    <div class="container">
+        <div class="weather-header-content">
+            <div class="weather-icon-wrapper">
                 <i class="fas fa-cloud-sun"></i>
             </div>
-            <h3>Weather Forecast</h3>
-            <p>Get real-time weather updates.</p>
-            <div class="feature-actions">
-                <input type="text" id="locationInput" placeholder="Enter location" class="location-input"/>
-                <button class="feature-btn" id="weatherFetchBtn">
-                    <i class="fas fa-search"></i>
-                    <span class="btn-text">Get Weather</span>
-                </button>
-            </div>
-            <div id="weatherResult" class="result-area"></div>
+            <h2>Real-Time Weather Forecast</h2>
+            <p class="weather-subtitle">
+                Get accurate weather updates to make informed farming decisions.
+                Plan your planting, irrigation, and harvesting with real-time meteorological data.
+            </p>
+            <p class="weather-features">
+                ✓ Real-time weather data &nbsp;&nbsp;
+                ✓ Temperature, humidity & wind speed
+            </p>
         </div>
+
+        <div class="weather-input-section">
+            <div class="input-wrapper">
+                <i class="fas fa-map-marker-alt input-icon"></i>
+                <input
+                        type="text"
+                        id="locationInput"
+                        placeholder="Enter your location (e.g., Mumbai, Maharashtra)"
+                        class="location-input-large"
+                />
+            </div>
+            <button id="weatherFetchBtn" class="btn-primary btn-weather-large">
+                <i class="fas fa-search"></i>
+                <span class="btn-text">Get Weather</span>
+            </button>
+            <p class="input-hint">Enter city name or your current location</p>
+        </div>
+
+        <div id="weatherResult" class="result-area"></div>
     </div>
 </section>
 <script type="module" src="/js/main.js"></script>

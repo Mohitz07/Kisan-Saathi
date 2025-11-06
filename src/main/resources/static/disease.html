@@ -36,25 +36,37 @@
     </div>
 </header>
 
-<section class="features-section" id="disease">
-    <div class="features-container">
-        <div class="feature-card disease-card">
-            <div class="feature-icon">
+<section class="disease-section">
+    <div class="container">
+        <div class="disease-header-content">
+            <div class="disease-icon-wrapper">
                 <i class="fas fa-leaf"></i>
             </div>
-            <h3>Disease Detection</h3>
-            <p>Upload crop images for AI-powered disease identification and treatment recommendations.</p>
-            <div class="feature-actions">
-                <input type="file" id="diseaseImageInput" accept="image/*" style="display:none;"/>
-                <button class="feature-btn" id="diseaseUploadBtn">
-                    <i class="fas fa-camera"></i>
-                    <span class="btn-text">Upload Image</span>
-                </button>
-            </div>
-            <div id="diseaseResult" class="result-area"></div>
+            <h2>AI-Powered Crop Disease Detection</h2>
+            <p class="disease-subtitle">
+                Upload a clear image of your crop leaf or plant to instantly detect diseases, pests, and health issues.
+                Our advanced AI analyzes your image and provides treatment recommendations.
+            </p>
+            <p class="disease-features">
+                ✓ Detects 288+ diseases across 23 major crops &nbsp;&nbsp;
+                ✓ Instant AI-powered analysis &nbsp;&nbsp;
+                ✓ Treatment recommendations
+            </p>
         </div>
+
+        <div class="upload-section">
+            <input type="file" id="diseaseFileInput" accept="image/*" style="display: none;">
+            <button id="diseaseUploadBtn" class="btn-primary btn-upload-large">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <span>Upload Crop Image</span>
+            </button>
+            <p class="upload-hint">Supported formats: JPG, PNG, HEIC • Max size: 10 MB</p>
+        </div>
+
+        <div id="diseaseResult" class="result-area"></div>
     </div>
 </section>
+
 <script type="module" src="/js/disease.js"></script>
 <script type="module" src="/js/translation.js"></script>
 </body>
