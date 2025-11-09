@@ -50,9 +50,16 @@ public class GeminiController {
     public ResponseEntity<String> getSoilAdvice(@RequestBody SoilRequest soilRequest) {
         try {
             String prompt = String.format(
-                    "You are an expert agriculture advisor for Indian farmers. Please reply in plain text only. Do not use any markdown formatting or special characters like asterisks.\n"+ "Soil test results:\n" +
-                            "Nitrogen: %.2f\nPhosphorus: %.2f\nPotassium: %.2f\n" +
-                            "Provide soil health improvement measures and recommended fertilizers in HINDI language. should be short and precise and produce output in such a way that you are talking with a person",
+                    "You are an expert agriculture advisor for Indian farmers. Please reply in plain text only. Do not use any markdown formatting or special characters like asterisks.\n\n" +
+                            "Soil test results:\n" +
+                            "Nitrogen: %.2f mg/kg\n" +
+                            "Phosphorus: %.2f mg/kg\n" +
+                            "Potassium: %.2f mg/kg\n" +
+                            "Moisture: 35%%\n" +  // Note the double %% to escape the percent sign
+                            "Temperature: 24°C\n" +
+                            "EC: 1.8 mS/cm\n" +
+                            "pH: 6.7\n\n" +
+                            "Provide soil health improvement measures and recommended fertilizers in HINDI language. Should be short and precise and produce output in such a way that you are talking with a person.",
                     soilRequest.nitrogen, soilRequest.phosphorus, soilRequest.potassium
             );
 

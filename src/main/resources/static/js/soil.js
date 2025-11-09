@@ -1,6 +1,12 @@
 import { getDatabase, ref, get, query, limitToLast } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
 export function initSoil(db) {
+  // Hardcoded values for additional soil parameters
+  const MOISTURE = 45.3;
+  const TEMPERATURE = 28.5;
+  const EC = 1.2;
+  const PH = 6.8;
+
   // Fetch soil advice from backend and display in a styled box
   async function fetchSoilAdvice(n, p, k) {
     const requestBody = { nitrogen: n, phosphorus: p, potassium: k };
@@ -88,6 +94,7 @@ export function initSoil(db) {
         const p = dataObj.P ?? null;
         const k = dataObj.K ?? null;
 
+        // Update N, P, K values (first 3 cards)
         if (paramCards[0]) {
           paramCards[0].querySelector('.param-value').textContent = n ?? "--";
           paramCards[0].querySelector('.param-status').textContent = "Updated";
@@ -99,6 +106,24 @@ export function initSoil(db) {
         if (paramCards[2]) {
           paramCards[2].querySelector('.param-value').textContent = k ?? "--";
           paramCards[2].querySelector('.param-status').textContent = "Updated";
+        }
+
+        // Update hardcoded values (next 4 cards)
+        if (paramCards[3]) {
+          paramCards[3].querySelector('.param-value').textContent = MOISTURE.toFixed(1);
+          paramCards[3].querySelector('.param-status').textContent = "Updated";
+        }
+        if (paramCards[4]) {
+          paramCards[4].querySelector('.param-value').textContent = TEMPERATURE.toFixed(1);
+          paramCards[4].querySelector('.param-status').textContent = "Updated";
+        }
+        if (paramCards[5]) {
+          paramCards[5].querySelector('.param-value').textContent = EC.toFixed(1);
+          paramCards[5].querySelector('.param-status').textContent = "Updated";
+        }
+        if (paramCards[6]) {
+          paramCards[6].querySelector('.param-value').textContent = PH.toFixed(1);
+          paramCards[6].querySelector('.param-status').textContent = "Updated";
         }
 
         let adviceContainer = document.getElementById('soilAdviceResult');

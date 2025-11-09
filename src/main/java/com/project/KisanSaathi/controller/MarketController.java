@@ -47,9 +47,16 @@ public class MarketController {
     @PostMapping("/get-prices")
     public ResponseEntity<String> getMarketPrices(@RequestBody MarketRequest request) {
         try {
-            // Create Gemini prompt
+            // Create Gemini prompt with better structure
             String prompt = "Act as a market expert for Indian farmers. Provide the latest market prices for " + request.crop +
-                    " in " + request.location + ". Include price per quintal, potential buyers, and selling tips.";
+                    " in " + request.location + ". " +
+                    "Structure your response with the following sections:\n" +
+                    "1. Market Price Range (per quintal) - Show price ranges for different quality grades\n" +
+                    "2. Key Factors Affecting Price\n" +
+                    "3. Potential Buyers in " + request.location + "\n" +
+                    "4. Selling Tips for Farmers\n" +
+                    "5. Final Advice\n\n" +
+                    "Make it specific to " + request.crop + " and use Indian Rupees (₹). Be practical and helpful.";
 
             GeminiRequestBody requestBody = new GeminiRequestBody(
                     Arrays.asList(new Content(Arrays.asList(new Part(prompt))))
@@ -78,8 +85,8 @@ public class MarketController {
                         Map<?, ?> part = (Map<?, ?>) parts.get(0);
                         String generatedText = (String) part.get("text");
 
-                        // Format as HTML for rich display
-                        String htmlResponse = generateHtmlResponse(request.crop, request.location, generatedText);
+                        // Format the Gemini response as HTML
+                        String htmlResponse = formatGeminiResponseToHtml(request.crop, request.location, generatedText);
 
                         // Escape JSON characters
                         String safeHtml = htmlResponse.replace("\\", "\\\\")
@@ -101,49 +108,67 @@ public class MarketController {
         }
     }
 
-    // Helper method to generate structured HTML
-    private String generateHtmlResponse(String crop, String location, String advice) {
+    // Helper method to format Gemini's text response into structured HTML
+    private String formatGeminiResponseToHtml(String crop, String location, String geminiText) {
         StringBuilder htmlResponse = new StringBuilder();
-        htmlResponse.append("<h4>").append(crop.toUpperCase()).append(" Market Price Range (per quintal):</h4>");
-        htmlResponse.append("<table class='price-table'>");
-        htmlResponse.append("<thead><tr><th>Quality</th><th>Price (₹)</th><th>Remarks</th></tr></thead>");
-        htmlResponse.append("<tbody>");
-        htmlResponse.append("<tr><td>Average</td><td>2,150 – 2,250</td><td>Standard wheat</td></tr>");
-        htmlResponse.append("<tr><td>Good</td><td>2,300 – 2,450</td><td>Sharbati, higher quality</td></tr>");
-        htmlResponse.append("<tr><td>Premium</td><td>2,450 – 2,600+</td><td>Best grain, direct to processors</td></tr>");
-        htmlResponse.append("</tbody></table><br/>");
 
-        htmlResponse.append("<h4>Key Factors Affecting Price:</h4>");
-        htmlResponse.append("<ul>");
-        htmlResponse.append("<li>Quality: Grain size, moisture, color, pests</li>");
-        htmlResponse.append("<li>Market Demand: Flour mills, supermarkets, exporters</li>");
-        htmlResponse.append("<li>Government MSP</li>");
-        htmlResponse.append("<li>Weather Conditions</li>");
-        htmlResponse.append("<li>Global Market Trends</li>");
-        htmlResponse.append("</ul><br/>");
+        htmlResponse.append("<div class='market-response'>");
+        htmlResponse.append("<h3 class='crop-title'>").append(crop.toUpperCase()).append(" Market Information for ").append(location).append("</h3>");
 
-        htmlResponse.append("<h4>Potential Buyers in ").append(location).append(":</h4>");
-        htmlResponse.append("<ul>");
-        htmlResponse.append("<li>APMC - Main market hub</li>");
-        htmlResponse.append("<li>Flour Mills - Direct buying for better margins</li>");
-        htmlResponse.append("<li>Wholesalers & Retailers</li>");
-        htmlResponse.append("<li>Food Processing Companies</li>");
-        htmlResponse.append("<li>Online Platforms: eNAM, AgriBazaar, Bijak</li>");
-        htmlResponse.append("</ul><br/>");
+        // Convert Gemini's text response to HTML with proper formatting
+        // Split by lines and add appropriate HTML tags
+        String[] lines = geminiText.split("\n");
+        boolean inList = false;
 
-        htmlResponse.append("<h4>Selling Tips for Farmers:</h4>");
-        htmlResponse.append("<ol>");
-        htmlResponse.append("<li>Harvest at the right time</li>");
-        htmlResponse.append("<li>Clean and grade your wheat</li>");
-        htmlResponse.append("<li>Control moisture below 12%</li>");
-        htmlResponse.append("<li>Efficient storage</li>");
-        htmlResponse.append("<li>Track daily prices</li>");
-        htmlResponse.append("<li>Negotiate payment terms</li>");
-        htmlResponse.append("</ol><br/>");
+        for (String line : lines) {
+            line = line.trim();
 
-        htmlResponse.append("<div class='final-advice'>");
-        htmlResponse.append("<h4>Final Advice:</h4>");
-        htmlResponse.append("<p>Stay informed, adapt quickly, and negotiate effectively for maximized profits.</p>");
+            if (line.isEmpty()) {
+                if (inList) {
+                    htmlResponse.append("</ul>");
+                    inList = false;
+                }
+                htmlResponse.append("<br/>");
+                continue;
+            }
+
+            // Check if line is a heading (starts with ##, **, or is ALL CAPS with :)
+            if (line.startsWith("##") || line.startsWith("**") ||
+                    (line.matches("^[A-Z\\s]+:.*") && line.length() < 100)) {
+                if (inList) {
+                    htmlResponse.append("</ul>");
+                    inList = false;
+                }
+                String heading = line.replaceAll("^#+\\s*", "")
+                        .replaceAll("\\*\\*", "")
+                        .replaceAll(":$", "");
+                htmlResponse.append("<h4>").append(heading).append("</h4>");
+            }
+            // Check if line is a list item (starts with -, *, or digit.)
+            else if (line.matches("^[-*•]\\s.*") || line.matches("^\\d+\\.\\s.*")) {
+                if (!inList) {
+                    htmlResponse.append("<ul>");
+                    inList = true;
+                }
+                String listItem = line.replaceAll("^[-*•]\\s*", "")
+                        .replaceAll("^\\d+\\.\\s*", "");
+                htmlResponse.append("<li>").append(listItem).append("</li>");
+            }
+            // Regular paragraph
+            else {
+                if (inList) {
+                    htmlResponse.append("</ul>");
+                    inList = false;
+                }
+                htmlResponse.append("<p>").append(line).append("</p>");
+            }
+        }
+
+        // Close any open list
+        if (inList) {
+            htmlResponse.append("</ul>");
+        }
+
         htmlResponse.append("</div>");
 
         return htmlResponse.toString();

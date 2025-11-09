@@ -2705,6 +2705,42 @@
 
 
 /* Market Info Box */
+.market-response {
+    padding: 20px;
+    background: var(--color-surface);
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+.crop-title {
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-border);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.market-response h4 {
+    color: var(--color-text);
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.market-response ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.market-response li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.market-response p {
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
 .market-info-box {
     background: #f0fdf4;
     padding: 20px;
